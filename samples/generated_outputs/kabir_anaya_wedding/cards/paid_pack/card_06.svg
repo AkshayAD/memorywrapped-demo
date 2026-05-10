@@ -1,0 +1,47 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0a06"/>
+      <stop offset="0.55" stop-color="#1a1508"/>
+      <stop offset="1" stop-color="#251e0a"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="920" cy="240" r="270" fill="#d4a843" opacity="0.16" filter="url(#glow)"/>
+  <circle cx="140" cy="1700" r="320" fill="#f0e6c8" opacity="0.10" filter="url(#glow)"/>
+  <rect x="78" y="92" width="924" height="1736" rx="54" fill="rgba(255,255,255,0.03)" stroke="rgba(212,168,67,0.22)" stroke-width="1.5"/>
+  <text x="120" y="180" fill="#d4a843" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">MEMORYWRAPPED DEMO</text>
+  <line x1="120" y1="210" x2="500" y2="210" stroke="#d4a843" stroke-width="1" opacity="0.35"/>
+  <text x="960" y="180" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="28" text-anchor="end">06 / 14</text>
+  <text x="120" y="298" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="34" letter-spacing="4">KABIR &amp; ANAYA · PAID PACK</text>
+  <text x="120" y="390" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="36" letter-spacing="5">YOUR RELATIONSHIP ERAS</text>
+  <!-- Era indicator dots - era 2 active -->
+  <circle cx="200" cy="448" r="8" fill="#9a8a6a" opacity="0.5"/>
+  <line x1="208" y1="448" x2="348" y2="448" stroke="#d4a843" stroke-width="1.5" opacity="0.3"/>
+  <circle cx="360" cy="448" r="12" fill="#d4a843" opacity="0.9"/>
+  <line x1="372" y1="448" x2="488" y2="448" stroke="#d4a843" stroke-width="1.5" opacity="0.2"/>
+  <circle cx="500" cy="448" r="8" fill="#9a8a6a" opacity="0.5"/>
+  <text x="120" y="560" fill="#d4a843" font-family="Arial, sans-serif" font-size="42" letter-spacing="3">ERA 2</text>
+  <text x="120" y="668" fill="#fdf6e3" font-family="Georgia, serif" font-size="76" font-weight="600">
+    <tspan x="120" dy="0">The Proposal</tspan>
+    <tspan x="120" dy="94">Phase</tspan>
+  </text>
+  <text x="120" y="900" fill="#d4a843" font-family="Georgia, serif" font-size="90" font-weight="700">February 2025</text>
+  <line x1="120" y1="958" x2="960" y2="958" stroke="#d4a843" stroke-width="1" opacity="0.22"/>
+  <text x="120" y="1050" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="36">The ring mission reached its peak.</text>
+  <text x="120" y="1190" fill="#e8d5a3" font-family="Arial, sans-serif" font-size="46">
+    <tspan x="120" dy="0">February 2025.</tspan>
+    <tspan x="120" dy="64">612 messages.</tspan>
+    <tspan x="120" dy="64">The ring mission</tspan>
+    <tspan x="120" dy="64">reached its peak.</tspan>
+  </text>
+  <!-- Ring motif subtle -->
+  <circle cx="860" cy="1300" r="80" fill="none" stroke="#d4a843" stroke-width="2" opacity="0.18"/>
+  <circle cx="860" cy="1300" r="18" fill="#d4a843" opacity="0.22"/>
+  <text x="120" y="1740" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="28">Synthetic demo · private by default · quotes need approval</text>
+  <text x="960" y="1800" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="26" text-anchor="end">memorywrapped.in</text>
+</svg>

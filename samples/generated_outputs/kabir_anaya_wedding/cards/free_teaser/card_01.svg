@@ -1,0 +1,39 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0a06"/>
+      <stop offset="0.55" stop-color="#1a1508"/>
+      <stop offset="1" stop-color="#251e0a"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="920" cy="240" r="270" fill="#d4a843" opacity="0.16" filter="url(#glow)"/>
+  <circle cx="140" cy="1700" r="320" fill="#f0e6c8" opacity="0.10" filter="url(#glow)"/>
+  <rect x="78" y="92" width="924" height="1736" rx="54" fill="rgba(255,255,255,0.03)" stroke="rgba(212,168,67,0.22)" stroke-width="1.5"/>
+  <text x="120" y="180" fill="#d4a843" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">MEMORYWRAPPED DEMO</text>
+  <line x1="120" y1="210" x2="500" y2="210" stroke="#d4a843" stroke-width="1" opacity="0.35"/>
+  <text x="960" y="180" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="28" text-anchor="end">01 / 06</text>
+  <text x="120" y="298" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="34" letter-spacing="4">KABIR &amp; ANAYA</text>
+  <text x="120" y="408" fill="#fdf6e3" font-family="Georgia, serif" font-size="82" font-weight="600">
+    <tspan x="120" dy="0">You two</tspan>
+    <tspan x="120" dy="100">sent</tspan>
+  </text>
+  <text x="120" y="730" fill="#d4a843" font-family="Georgia, serif" font-size="152" font-weight="700">4,182</text>
+  <text x="120" y="850" fill="#f0e6c8" font-family="Georgia, serif" font-size="62">messages</text>
+  <line x1="120" y1="910" x2="960" y2="910" stroke="#d4a843" stroke-width="1" opacity="0.22"/>
+  <text x="120" y="978" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="36">Jan 2025 – Aug 2025</text>
+  <text x="120" y="1110" fill="#e8d5a3" font-family="Arial, sans-serif" font-size="48">
+    <tspan x="120" dy="0">Kabir &amp; Anaya wrote</tspan>
+    <tspan x="120" dy="66">241 days of love,</tspan>
+    <tspan x="120" dy="66">plans, and</tspan>
+    <tspan x="120" dy="66">sangeet panic.</tspan>
+  </text>
+  <polygon points="540,1470 556,1486 540,1502 524,1486" fill="#d4a843" opacity="0.55"/>
+  <text x="540" y="1565" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" letter-spacing="3">MORE INSIDE YOUR PACK</text>
+  <text x="120" y="1740" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="28">Synthetic demo · private by default · quotes need approval</text>
+  <text x="960" y="1800" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="26" text-anchor="end">memorywrapped.in</text>
+</svg>

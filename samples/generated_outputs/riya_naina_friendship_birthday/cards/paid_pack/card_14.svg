@@ -1,0 +1,48 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d0916"/>
+      <stop offset="0.55" stop-color="#1a0f2e"/>
+      <stop offset="1" stop-color="#2a1640"/>
+    </linearGradient>
+    <linearGradient id="goldBorder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4a261"/>
+      <stop offset="0.5" stop-color="#c77dff"/>
+      <stop offset="1" stop-color="#f4a261"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowStrong">
+      <feGaussianBlur stdDeviation="28" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="920" cy="240" r="320" fill="#f4a261" opacity="0.18" filter="url(#glowStrong)"/>
+  <circle cx="140" cy="1700" r="370" fill="#c77dff" opacity="0.18" filter="url(#glowStrong)"/>
+  <circle cx="540" cy="960" r="400" fill="#c77dff" opacity="0.06" filter="url(#glow)"/>
+  <rect x="78" y="92" width="924" height="1736" rx="54" fill="rgba(255,255,255,0.06)" stroke="url(#goldBorder)" stroke-width="2.5"/>
+  <text x="120" y="180" fill="#f4a261" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">MEMORYWRAPPED DEMO</text>
+  <line x1="120" y1="210" x2="960" y2="210" stroke="#f4a261" stroke-width="1.5" opacity="0.5"/>
+  <rect x="120" y="248" width="560" height="56" rx="28" fill="#f4a261" opacity="0.2"/>
+  <text x="400" y="283" fill="#f4a261" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" letter-spacing="3">Riya &amp; Naina · Full Pack</text>
+  <text x="120" y="420" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="38" letter-spacing="3">YOU UNLOCKED</text>
+  <text x="120" y="530" fill="#f7f0ff" font-family="Georgia, serif" font-size="82" font-weight="600">Gift</text>
+  <text x="120" y="630" fill="#f7f0ff" font-family="Georgia, serif" font-size="82" font-weight="600">unlocked</text>
+  <line x1="120" y1="680" x2="960" y2="680" stroke="#f4a261" stroke-width="2" opacity="0.4"/>
+  <text x="540" y="860" font-family="Arial, sans-serif" font-size="200" text-anchor="middle">&#x1F381;</text>
+  <text x="120" y="1010" fill="#f4a261" font-family="Georgia, serif" font-size="78" font-weight="700">Your full</text>
+  <text x="120" y="1100" fill="#f4a261" font-family="Georgia, serif" font-size="78" font-weight="700">Friendship Wrapped</text>
+  <line x1="120" y1="1150" x2="960" y2="1150" stroke="#f4a261" stroke-width="1.5" opacity="0.35"/>
+  <text x="120" y="1240" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">Funny, emotional, private.</text>
+  <text x="120" y="1300" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">Made from your real</text>
+  <text x="120" y="1360" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">messages.</text>
+  <rect x="120" y="1420" width="840" height="120" rx="24" fill="rgba(244,162,97,0.15)" stroke="rgba(244,162,97,0.45)" stroke-width="2"/>
+  <text x="540" y="1465" fill="#f4a261" font-family="Arial, sans-serif" font-size="40" text-anchor="middle" font-weight="600">DM @getmemorywrapped</text>
+  <text x="540" y="1520" fill="#f4a261" font-family="Arial, sans-serif" font-size="40" text-anchor="middle" font-weight="600">to create yours.</text>
+  <text x="120" y="1640" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="34">2024 friendship wrapped · paid pack</text>
+  <text x="120" y="1740" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="28">Synthetic demo · private by default · quotes need approval</text>
+  <text x="960" y="1800" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="26" text-anchor="end">memorywrapped.in</text>
+</svg>

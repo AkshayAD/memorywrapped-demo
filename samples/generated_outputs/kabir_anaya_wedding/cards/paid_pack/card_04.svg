@@ -1,0 +1,46 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0a06"/>
+      <stop offset="0.55" stop-color="#1a1508"/>
+      <stop offset="1" stop-color="#251e0a"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="920" cy="240" r="270" fill="#d4a843" opacity="0.16" filter="url(#glow)"/>
+  <circle cx="140" cy="1700" r="320" fill="#f0e6c8" opacity="0.10" filter="url(#glow)"/>
+  <!-- Extra late-night atmosphere glow -->
+  <circle cx="540" cy="960" r="380" fill="#1a1508" opacity="0.6"/>
+  <rect x="78" y="92" width="924" height="1736" rx="54" fill="rgba(255,255,255,0.03)" stroke="rgba(212,168,67,0.22)" stroke-width="1.5"/>
+  <text x="120" y="180" fill="#d4a843" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">MEMORYWRAPPED DEMO</text>
+  <line x1="120" y1="210" x2="500" y2="210" stroke="#d4a843" stroke-width="1" opacity="0.35"/>
+  <text x="960" y="180" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="28" text-anchor="end">04 / 14</text>
+  <text x="120" y="298" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="34" letter-spacing="4">KABIR &amp; ANAYA · PAID PACK</text>
+  <!-- Moon icon -->
+  <path d="M490,390 A90,90 0 1 0 490,560 A60,60 0 1 1 490,390 Z" fill="#d4a843" opacity="0.55"/>
+  <!-- Stars -->
+  <circle cx="650" cy="400" r="4" fill="#f0e6c8" opacity="0.7"/>
+  <circle cx="700" cy="430" r="3" fill="#f0e6c8" opacity="0.5"/>
+  <circle cx="680" cy="360" r="3" fill="#f0e6c8" opacity="0.6"/>
+  <circle cx="740" cy="390" r="5" fill="#f0e6c8" opacity="0.4"/>
+  <text x="120" y="660" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="36" letter-spacing="3">AFTER 11 PM</text>
+  <text x="120" y="752" fill="#fdf6e3" font-family="Georgia, serif" font-size="76" font-weight="600">
+    <tspan x="120" dy="0">Late night</tspan>
+    <tspan x="120" dy="94">philosophers</tspan>
+  </text>
+  <text x="120" y="990" fill="#d4a843" font-family="Georgia, serif" font-size="152" font-weight="700">892</text>
+  <text x="120" y="1098" fill="#f0e6c8" font-family="Georgia, serif" font-size="54">messages after 11pm</text>
+  <line x1="120" y1="1158" x2="960" y2="1158" stroke="#d4a843" stroke-width="1" opacity="0.22"/>
+  <text x="120" y="1280" fill="#e8d5a3" font-family="Arial, sans-serif" font-size="43">
+    <tspan x="120" dy="0">After everyone else slept —</tspan>
+    <tspan x="120" dy="62">892 messages of plans,</tspan>
+    <tspan x="120" dy="62">fears, dreams, and what</tspan>
+    <tspan x="120" dy="62">to eat tomorrow.</tspan>
+  </text>
+  <text x="120" y="1740" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="28">Synthetic demo · private by default · quotes need approval</text>
+  <text x="960" y="1800" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="26" text-anchor="end">memorywrapped.in</text>
+</svg>

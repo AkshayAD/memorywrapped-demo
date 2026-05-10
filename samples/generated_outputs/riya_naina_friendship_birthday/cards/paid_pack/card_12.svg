@@ -1,0 +1,39 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d0916"/>
+      <stop offset="0.55" stop-color="#1a0f2e"/>
+      <stop offset="1" stop-color="#2a1640"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="920" cy="240" r="270" fill="#f4a261" opacity="0.14" filter="url(#glow)"/>
+  <circle cx="140" cy="1700" r="320" fill="#c77dff" opacity="0.14" filter="url(#glow)"/>
+  <rect x="78" y="92" width="924" height="1736" rx="54" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.13)" stroke-width="1.5"/>
+  <text x="120" y="180" fill="#f4a261" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">MEMORYWRAPPED DEMO</text>
+  <line x1="120" y1="210" x2="480" y2="210" stroke="#f4a261" stroke-width="1.5" opacity="0.4"/>
+  <rect x="120" y="248" width="560" height="56" rx="28" fill="#c77dff" opacity="0.15"/>
+  <text x="400" y="283" fill="#c77dff" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" letter-spacing="2">Riya &amp; Naina · Full Pack</text>
+  <text x="120" y="420" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="38" letter-spacing="3">FRIENDSHIP ERA LABEL</text>
+  <text x="120" y="530" fill="#f7f0ff" font-family="Georgia, serif" font-size="82" font-weight="600">Your</text>
+  <text x="120" y="630" fill="#f7f0ff" font-family="Georgia, serif" font-size="82" font-weight="600">friendship era</text>
+  <rect x="120" y="680" width="680" height="8" rx="4" fill="#f4a261" opacity="0.3"/>
+  <text x="540" y="850" font-family="Arial, sans-serif" font-size="150" text-anchor="middle">&#x1F95F;&#x1F92A;</text>
+  <rect x="120" y="900" width="840" height="160" rx="24" fill="rgba(244,162,97,0.12)" stroke="rgba(244,162,97,0.35)" stroke-width="2"/>
+  <text x="540" y="965" fill="#f4a261" font-family="Georgia, serif" font-size="56" font-weight="700" text-anchor="middle">The Momo &amp;</text>
+  <text x="540" y="1035" fill="#f4a261" font-family="Georgia, serif" font-size="56" font-weight="700" text-anchor="middle">Madness Era</text>
+  <text x="120" y="1130" fill="#d4bfff" font-family="Arial, sans-serif" font-size="42">January 2024 – December 2024</text>
+  <text x="120" y="1195" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="36">642 messages. 88 active days.</text>
+  <line x1="120" y1="1260" x2="960" y2="1260" stroke="#c77dff" stroke-width="1.5" opacity="0.25"/>
+  <text x="120" y="1350" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">When you decided</text>
+  <text x="120" y="1410" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">adulting would be more</text>
+  <text x="120" y="1470" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">fun together.</text>
+  <text x="120" y="1590" fill="#f4a261" font-family="Arial, sans-serif" font-size="34" opacity="0.7">&#x1F4C5; officially logged in the archives</text>
+  <text x="120" y="1640" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="34">2024 friendship wrapped · paid pack</text>
+  <text x="120" y="1740" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="28">Synthetic demo · private by default · quotes need approval</text>
+  <text x="960" y="1800" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="26" text-anchor="end">memorywrapped.in</text>
+</svg>

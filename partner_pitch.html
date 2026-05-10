@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>MemoryWrapped — Partner Kit for Event Managers & Wedding Planners</title>
+  <style>
+    :root {
+      --gold: #c9a96e; --rose: #e8b4b8;
+      --bg: #07070d; --card-bg: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.10);
+      --text: #f0ece4; --muted: #8a8070;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Arial', sans-serif; line-height: 1.6; }
+    a { color: var(--gold); }
+
+    nav {
+      padding: 18px 48px; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .nav-brand { font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .nav-note { font-size: 0.75rem; color: var(--muted); }
+
+    .hero {
+      text-align: center; padding: 80px 24px 64px;
+      background: radial-gradient(ellipse 900px 500px at 60% 30%, rgba(201,169,110,0.09) 0%, transparent 65%),
+                  radial-gradient(ellipse 600px 400px at 20% 80%, rgba(232,180,184,0.07) 0%, transparent 65%);
+    }
+    .eyebrow {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(201,169,110,0.3); padding: 7px 18px; border-radius: 40px;
+      margin-bottom: 28px;
+    }
+    .hero h1 { font-family: 'Georgia', serif; font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 400; line-height: 1.15; max-width: 800px; margin: 0 auto 20px; }
+    .hero h1 em { font-style: italic; color: var(--rose); }
+    .hero p { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #a8823e); color: #0a0805;
+      font-size: 0.88rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 16px 40px; border-radius: 4px; text-decoration: none; transition: opacity 0.2s;
+      display: inline-block;
+    }
+    .btn-gold:hover { opacity: 0.88; }
+    .btn-outline {
+      border: 1px solid rgba(201,169,110,0.4); color: var(--gold);
+      font-size: 0.88rem; padding: 16px 32px; border-radius: 4px;
+      text-decoration: none; transition: border-color 0.2s; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--gold); }
+
+    section { padding: 80px 32px; max-width: 1100px; margin: 0 auto; }
+    .section-tag { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
+    h2 { font-family: 'Georgia', serif; font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 400; margin-bottom: 12px; }
+    .section-sub { font-size: 0.95rem; color: var(--muted); max-width: 560px; margin-bottom: 48px; line-height: 1.7; }
+
+    .divider { border: none; border-top: 1px solid var(--card-border); }
+
+    /* WHAT IT IS */
+    .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .what-grid .left h3 { font-family: 'Georgia', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 16px; line-height: 1.4; }
+    .what-grid .left p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+    .feature-list { list-style: none; }
+    .feature-list li {
+      font-size: 0.88rem; color: var(--muted); padding: 9px 0;
+      border-bottom: 1px solid var(--card-border); display: flex; gap: 10px;
+    }
+    .feature-list li::before { content: '✦'; color: var(--gold); flex-shrink: 0; }
+
+    /* USE CASES */
+    .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .usecase-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 10px; padding: 28px 24px;
+    }
+    .usecase-card h4 { font-family: 'Georgia', serif; font-size: 1rem; margin-bottom: 8px; color: var(--text); font-weight: 400; }
+    .usecase-card .hook { font-size: 0.82rem; color: var(--gold); margin-bottom: 8px; font-style: italic; }
+    .usecase-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+
+    /* HOW IT WORKS FOR PARTNER */
+    .steps-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+    .step { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 28px 22px; }
+    .step-n { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 10px; }
+    .step h4 { font-size: 0.95rem; margin-bottom: 8px; }
+    .step p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+
+    /* COMMERCIAL */
+    .commercial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .model-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 10px; padding: 32px 24px;
+    }
+    .model-card.featured { border-color: rgba(201,169,110,0.45); background: rgba(201,169,110,0.05); }
+    .model-name { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .model-card h4 { font-family: 'Georgia', serif; font-size: 1.1rem; margin-bottom: 8px; font-weight: 400; }
+    .model-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; margin-bottom: 12px; }
+    .model-number { font-family: 'Georgia', serif; font-size: 2rem; color: var(--gold); margin: 12px 0 4px; }
+    .model-label { font-size: 0.78rem; color: var(--muted); }
+
+    /* SAMPLE */
+    .sample-row { display: flex; gap: 24px; overflow-x: auto; padding-bottom: 12px; }
+    .sample-thumb {
+      flex-shrink: 0; width: 180px;
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 10px; overflow: hidden; cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .sample-thumb:hover { border-color: rgba(201,169,110,0.4); transform: translateY(-3px); }
+    .sample-thumb object { width: 100%; aspect-ratio: 9/16; display: block; pointer-events: none; }
+    .sample-cap { padding: 8px 10px; font-size: 0.72rem; color: var(--muted); text-align: center; }
+
+    /* TRUST */
+    .trust-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .trust-item { padding: 20px 0; border-top: 2px solid rgba(201,169,110,0.2); }
+    .trust-item h4 { font-size: 0.9rem; color: var(--gold); margin-bottom: 6px; }
+    .trust-item p { font-size: 0.84rem; color: var(--muted); line-height: 1.55; }
+
+    /* FAQ */
+    .faq-list { max-width: 720px; }
+    .faq-item { border-bottom: 1px solid var(--card-border); padding: 20px 0; }
+    .faq-item h4 { font-size: 0.95rem; margin-bottom: 8px; color: var(--text); }
+    .faq-item p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
+
+    /* CTA FINAL */
+    .cta-final {
+      text-align: center; padding: 80px 24px;
+      border-top: 1px solid var(--card-border);
+      background: radial-gradient(ellipse 700px 400px at 50% 0%, rgba(201,169,110,0.07) 0%, transparent 65%);
+    }
+    .cta-final h2 { font-family: 'Georgia', serif; font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 400; margin-bottom: 12px; }
+    .cta-final p { font-size: 0.9rem; color: var(--muted); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    footer {
+      border-top: 1px solid var(--card-border); padding: 28px 48px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+      font-size: 0.75rem; color: var(--muted);
+    }
+
+    @media(max-width:700px) {
+      .what-grid { grid-template-columns: 1fr; gap: 32px; }
+      nav { padding: 16px 20px; }
+      section { padding: 56px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">✧ MemoryWrapped</div>
+  <div class="nav-note">Partner &amp; B2B Kit — Confidential draft</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">For wedding planners · event managers · gifting partners</div>
+  <h1>Add a <em>private memory gift</em> to your packages. Zero inventory. We fulfil.</h1>
+  <p>MemoryWrapped turns a couple's or group's WhatsApp chat into a cinematic private keepsake — story cards, PDF, or a website. You propose it as part of your package. We create it. You earn margin.</p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-gold">Request a pilot demo</a>
+    <a href="card_gallery.html" target="_blank" class="btn-outline">View sample cards</a>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- WHAT IT IS -->
+<section>
+  <span class="section-tag">The product</span>
+  <div class="what-grid">
+    <div class="left">
+      <h3>Your clients already have thousands of messages they've never truly seen.</h3>
+      <p>MemoryWrapped parses their WhatsApp chat export and builds a beautiful private keepsake from it — funny awards, relationship eras, inside jokes, motifs, stats, and safe quotes.</p>
+      <p>Think Spotify Wrapped, but for a couple's or group's real messages. Private by default. Delivered as a download or private link.</p>
+    </div>
+    <div class="right">
+      <ul class="feature-list">
+        <li>20–35 vertical story cards (Instagram format)</li>
+        <li>8–12 page PDF keepsake (printable)</li>
+        <li>Private interactive website with cinematic UI</li>
+        <li>Funny awards ceremony (inside jokes, habits, streaks)</li>
+        <li>Relationship / friendship eras and timeline</li>
+        <li>Safe quote approval — nothing shown without consent</li>
+        <li>QR code card for hamper or event reveal</li>
+        <li>Raw chat deleted after generation</li>
+        <li>48–72 hour delivery during beta</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- USE CASES -->
+<section>
+  <span class="section-tag">Use cases for partners</span>
+  <h2>Where it fits in your packages.</h2>
+  <p class="section-sub">These are the exact moments where a private memory gift creates the most emotional impact for your clients.</p>
+  <div class="usecase-grid">
+    <div class="usecase-card">
+      <h4>Engagement &amp; Wedding Day</h4>
+      <div class="hook">"Open this QR at the wedding morning."</div>
+      <p>A private website or story pack of the couple's journey — from first messages to wedding day. Given as a surprise reveal.</p>
+    </div>
+    <div class="usecase-card">
+      <h4>Proposal Setup</h4>
+      <div class="hook">"The QR opens their entire love story."</div>
+      <p>The proposal reveal includes a private site ending with "Will you marry me?" Built from their real chats. Completely personalised.</p>
+    </div>
+    <div class="usecase-card">
+      <h4>Sangeet / Pre-Wedding Events</h4>
+      <div class="hook">"A memory wall people actually react to."</div>
+      <p>Display the couple's funniest chat moments, inside jokes, and awards as a projected story wall or printed card table display.</p>
+    </div>
+    <div class="usecase-card">
+      <h4>Anniversary Parties</h4>
+      <div class="hook">"A gift that only they could receive."</div>
+      <p>For milestone anniversaries — 1st, 5th, 10th, 25th. A full retrospective of their entire message history together.</p>
+    </div>
+    <div class="usecase-card">
+      <h4>Gift Hampers</h4>
+      <div class="hook">"QR card inside the hamper box."</div>
+      <p>Add a printed QR card to any physical gift hamper. It opens a private MemoryWrapped link. Digital, personal, no extra logistics.</p>
+    </div>
+    <div class="usecase-card">
+      <h4>Birthday &amp; Farewell Events</h4>
+      <div class="hook">"A friendship Wrapped for the group."</div>
+      <p>Birthdays, farewells, college reunions — a funny friendship keepsake from the group chat. Awards, roasts, inside jokes.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- HOW IT WORKS FOR PARTNERS -->
+<section>
+  <span class="section-tag">Partner workflow</span>
+  <h2>How it works for you.</h2>
+  <p class="section-sub">No technical work required on your side. You propose it; we build and deliver it.</p>
+  <div class="steps-row">
+    <div class="step">
+      <div class="step-n">STEP 01</div>
+      <h4>You propose it</h4>
+      <p>Show the client our synthetic demo sample. Tell them we need their WhatsApp chat export (.txt file). They agree and confirm consent.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">STEP 02</div>
+      <h4>They export &amp; share</h4>
+      <p>WhatsApp export takes 30 seconds. They send us the .txt file directly (not through you, to protect privacy). We confirm receipt.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">STEP 03</div>
+      <h4>We generate</h4>
+      <p>We build the full keepsake in 24–72 hours — cards, PDF, or website. Client reviews and approves any quotes before delivery.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">STEP 04</div>
+      <h4>We deliver privately</h4>
+      <p>Client gets a private download link. You get a QR card file to print if needed for the event reveal. Job done.</p>
+    </div>
+    <div class="step">
+      <div class="step-n">STEP 05</div>
+      <h4>You earn margin</h4>
+      <p>You invoiced the client at your price. We invoice you at wholesale rate. The difference is your margin. Simple.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- COMMERCIAL MODELS -->
+<section>
+  <span class="section-tag">Commercial models</span>
+  <h2>How we work together financially.</h2>
+  <p class="section-sub">Flexible structures for different partner types. All start with a free pilot — no commitment until you see it work.</p>
+  <div class="commercial-grid">
+
+    <div class="model-card featured">
+      <div class="model-name">Wholesale margin</div>
+      <h4>You set your price. We charge wholesale.</h4>
+      <p>We charge you ₹599–₹899 per fulfilled order depending on product tier. You bill the client at whatever price you choose (typically ₹1,499–₹3,999 as part of a package).</p>
+      <div class="model-number">₹600–2,400</div>
+      <div class="model-label">Your margin per order (typical)</div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-name">Revenue share</div>
+      <h4>We fulfil, you refer, we split.</h4>
+      <p>You refer clients directly to us with your partner code. We charge the client directly. You receive 25–30% of the order value — no invoicing, no handling.</p>
+      <div class="model-number">25–30%</div>
+      <div class="model-label">Commission per referred sale</div>
+    </div>
+
+    <div class="model-card">
+      <div class="model-name">White-label pilot</div>
+      <h4>Your brand, our engine.</h4>
+      <p>For established planners and platforms: we remove MemoryWrapped branding and deliver under your studio name. Available after 5+ orders. Pricing on request.</p>
+      <div class="model-number">Custom</div>
+      <div class="model-label">Pricing after 5 orders</div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SAMPLE CARDS -->
+<section>
+  <span class="section-tag">Sample output</span>
+  <h2>What the client receives.</h2>
+  <p class="section-sub">All samples use synthetic fictional data. This is what a wedding couple's paid pack looks like.</p>
+  <div class="sample-row" id="sample-row">
+    <!-- JS-populated from kabir/anaya wedding cards -->
+  </div>
+  <p style="margin-top:20px; font-size:0.85rem;">
+    <a href="card_gallery.html" target="_blank">View all demo card packs (anniversary, friendship, wedding) →</a>
+  </p>
+</section>
+
+<hr class="divider"/>
+
+<!-- TRUST & PRIVACY -->
+<section>
+  <span class="section-tag">Trust &amp; privacy</span>
+  <h2>Why clients feel safe using this.</h2>
+  <p class="section-sub">Privacy is the biggest objection. These are our built-in answers.</p>
+  <div class="trust-row">
+    <div class="trust-item">
+      <h4>No WhatsApp account access</h4>
+      <p>Clients export the chat themselves and share only the .txt file. We never touch their app or account.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Quote approval before delivery</h4>
+      <p>Every message that might appear in the keepsake is shown to the client first. Nothing is included without sign-off.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Raw chat deleted after generation</h4>
+      <p>The .txt export is used only during the generation step and deleted automatically. We do not store it.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Private link, not public page</h4>
+      <p>The output is a private download or private signed link. It is never indexed or shared publicly by default.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Synthetic demos only in marketing</h4>
+      <p>We use fictional synthetic chats for all marketing and demos. No real customer data ever appears publicly.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Delete on request, 24h</h4>
+      <p>Clients can request full deletion at any time. We purge everything within 24 hours, no questions asked.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- FAQ -->
+<section>
+  <span class="section-tag">Common questions</span>
+  <h2>What partners ask us.</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <h4>What if the client's chat is in Hindi or a mix of languages?</h4>
+      <p>We handle Hinglish and mixed-language WhatsApp exports well. The parser reads the message structure, not language-specific keywords only. We'll show you a demo if needed.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How quickly can we turn around a wedding order?</h4>
+      <p>24–72 hours during our current beta. For weddings, we recommend collecting the chat export 5–7 days before the event to allow for quote review and any changes.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can we see a live demo before committing?</h4>
+      <p>Yes. We will generate a demo keepsake from a synthetic chat and walk you through the full output on a call or share it as a private file. No commitment required.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What if the couple doesn't want to share their chat?</h4>
+      <p>That's completely fine and we will never pressure anyone. The product works only when clients genuinely want it — the quality depends on the data being real and personal.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can we include it as a line item in our proposal PDF?</h4>
+      <p>Yes. We'll provide a one-line description and pricing block you can paste into any proposal. We can also provide a branded mini PDF if needed.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What's the pilot offer to get started?</h4>
+      <p>We offer 1–2 free pilot orders at no cost so you can see the full product before committing to any commercial arrangement. Just reach out to begin.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-final" id="contact">
+  <h2>Start with a free pilot order.</h2>
+  <p>No commitment. We generate one sample keepsake for a real or test couple and you see the full output before deciding anything.</p>
+  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+    <a href="https://instagram.com/getmemorywrapped" target="_blank" class="btn-gold">DM us on Instagram</a>
+    <a href="card_gallery.html" target="_blank" class="btn-outline">View full sample gallery</a>
+  </div>
+</div>
+
+<footer>
+  <div style="font-size:0.75rem; letter-spacing:0.2em; color:var(--gold);">✧ MemoryWrapped</div>
+  <div>All demos use synthetic fictional data · Private by default · Confidential partner draft</div>
+</footer>
+
+<script>
+  // Load first 6 Kabir/Anaya wedding paid pack cards as samples
+  const BASE = 'samples/generated_outputs/kabir_anaya_wedding/cards/paid_pack/';
+  const row = document.getElementById('sample-row');
+  for (let i = 1; i <= 6; i++) {
+    const src = BASE + 'card_' + String(i).padStart(2,'0') + '.svg';
+    const div = document.createElement('div');
+    div.className = 'sample-thumb';
+    div.onclick = () => window.open('card_gallery.html#kabir-anaya','_blank');
+    div.innerHTML = `<object type="image/svg+xml" data="${src}" style="width:100%;aspect-ratio:9/16;display:block;pointer-events:none;"></object><div class="sample-cap">Wedding card ${i}</div>`;
+    row.appendChild(div);
+  }
+</script>
+</body>
+</html>

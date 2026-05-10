@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>MemoryWrapped — Sample Card Gallery</title>
+  <meta name="description" content="Sample story cards from MemoryWrapped — all synthetic demo data. See what your WhatsApp Wrapped could look like."/>
+  <style>
+    :root {
+      --gold: #c9a96e;
+      --rose: #e8b4b8;
+      --bg: #07070d;
+      --card-bg: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.10);
+      --text: #f0ece4;
+      --muted: #8a8070;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Arial', sans-serif; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7,7,13,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 18px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-brand { font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .nav-right { font-size: 0.78rem; color: var(--muted); }
+    .nav-right a { color: var(--gold); text-decoration: none; }
+
+    .page-hero {
+      text-align: center; padding: 72px 24px 48px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .page-hero .eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px; display: block;
+    }
+    .page-hero h1 { font-family: 'Georgia', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; margin-bottom: 12px; }
+    .page-hero p { font-size: 0.9rem; color: var(--muted); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+    .gallery-nav {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      padding: 28px 24px; border-bottom: 1px solid var(--card-border);
+      position: sticky; top: 57px; z-index: 90;
+      background: rgba(7,7,13,0.92); backdrop-filter: blur(8px);
+    }
+    .tab-btn {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      color: var(--muted); font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 9px 20px; border-radius: 40px;
+      cursor: pointer; transition: all 0.2s; text-decoration: none;
+    }
+    .tab-btn:hover, .tab-btn.active { border-color: var(--gold); color: var(--gold); }
+
+    .pack-section { padding: 64px 32px; max-width: 1300px; margin: 0 auto; }
+    .pack-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px; margin-bottom: 32px;
+      padding-bottom: 20px; border-bottom: 1px solid var(--card-border);
+    }
+    .pack-header-left .tag {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: 6px;
+    }
+    .pack-header-left h2 { font-family: 'Georgia', serif; font-size: 1.6rem; font-weight: 400; }
+    .pack-header-left p { font-size: 0.84rem; color: var(--muted); margin-top: 4px; }
+    .pack-meta { font-size: 0.78rem; color: var(--muted); text-align: right; line-height: 1.7; }
+
+    .tier-label {
+      font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); margin: 40px 0 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .tier-label::after { content: ''; flex: 1; height: 1px; background: var(--card-border); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .card-item {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 10px; overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer; position: relative;
+    }
+    .card-item:hover { border-color: rgba(201,169,110,0.4); transform: translateY(-3px); }
+    .card-item img {
+      width: 100%; display: block;
+    }
+    .card-item object {
+      width: 100%; aspect-ratio: 9/16; display: block; pointer-events: none;
+    }
+    .card-caption {
+      padding: 10px 12px;
+      font-size: 0.72rem; color: var(--muted); text-align: center;
+    }
+    .card-free-badge {
+      position: absolute; top: 8px; left: 8px;
+      background: rgba(201,169,110,0.18); border: 1px solid rgba(201,169,110,0.35);
+      color: var(--gold); font-size: 0.58rem; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 12px;
+    }
+    .card-paid-badge {
+      position: absolute; top: 8px; left: 8px;
+      background: rgba(232,180,184,0.15); border: 1px solid rgba(232,180,184,0.3);
+      color: var(--rose); font-size: 0.58rem; letter-spacing: 0.15em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 12px;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-inner {
+      position: relative; max-height: 90vh; display: flex; align-items: center;
+    }
+    .modal-inner object, .modal-inner img {
+      max-height: 85vh; max-width: 90vw;
+      border-radius: 10px; display: block;
+    }
+    .modal-close {
+      position: absolute; top: -16px; right: -16px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text); font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-prev, .modal-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text); font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-prev { left: 16px; }
+    .modal-next { right: 16px; }
+    .modal-prev:hover, .modal-next:hover { background: rgba(255,255,255,0.2); }
+
+    /* SEPARATOR */
+    .pack-divider { border: none; border-top: 2px solid var(--card-border); margin: 0; }
+
+    /* CTA STRIP */
+    .cta-strip {
+      text-align: center; padding: 72px 24px;
+      background: radial-gradient(ellipse 700px 300px at 50% 50%, rgba(201,169,110,0.07) 0%, transparent 70%);
+      border-top: 1px solid var(--card-border);
+    }
+    .cta-strip h2 { font-family: 'Georgia', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 400; margin-bottom: 12px; }
+    .cta-strip p { font-size: 0.9rem; color: var(--muted); margin-bottom: 32px; }
+    .btn-gold {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), #a8823e);
+      color: #0a0805; font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 16px 44px; border-radius: 4px;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .btn-gold:hover { opacity: 0.88; }
+    .btn-secondary-sm {
+      display: inline-block; margin-left: 16px;
+      border: 1px solid rgba(201,169,110,0.35); color: var(--gold);
+      font-size: 0.9rem; letter-spacing: 0.1em;
+      padding: 16px 32px; border-radius: 4px;
+      text-decoration: none; transition: border-color 0.2s;
+    }
+    .btn-secondary-sm:hover { border-color: var(--gold); }
+
+    @media(max-width:600px) {
+      nav { padding: 16px 20px; }
+      .pack-section { padding: 48px 16px; }
+      .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+      .btn-secondary-sm { margin-left: 0; margin-top: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">✧ MemoryWrapped — Demo Gallery</div>
+  <div class="nav-right"><a href="index.html">← Back to landing page</a></div>
+</nav>
+
+<div class="page-hero">
+  <span class="eyebrow">Synthetic demo data only · No real customer chats</span>
+  <h1>Sample story cards — three different gift types</h1>
+  <p>Click any card to enlarge. All content is fictional synthetic demo data created to show the product format and quality.</p>
+</div>
+
+<div class="gallery-nav">
+  <a href="#aarav-meera" class="tab-btn active">Couple · Anniversary</a>
+  <a href="#riya-naina" class="tab-btn">Friends · Birthday</a>
+  <a href="#kabir-anaya" class="tab-btn">Wedding · Memory Atlas</a>
+</div>
+
+<!-- ============ AARAV & MEERA — ANNIVERSARY ============ -->
+<section class="pack-section" id="aarav-meera">
+  <div class="pack-header">
+    <div class="pack-header-left">
+      <span class="tag">Couple · Anniversary</span>
+      <h2>Aarav & Meera — Anniversary Wrapped</h2>
+      <p>A romantic + funny anniversary keepsake. Dark rose &amp; gold palette.</p>
+    </div>
+    <div class="pack-meta">
+      794 synthetic messages · 95 active days<br/>
+      <a href="samples/generated_outputs/aarav_meera_anniversary/site/index.html" target="_blank" style="color:var(--gold);">Open full demo website →</a>
+    </div>
+  </div>
+
+  <div class="tier-label">Free teaser cards (shown before payment)</div>
+  <div class="cards-grid" id="am-free-grid">
+    <!-- Populated by JS -->
+  </div>
+
+  <div class="tier-label" style="margin-top:48px;">Paid pack cards (unlocked after ₹999 order)</div>
+  <div class="cards-grid" id="am-paid-grid">
+    <!-- Populated by JS -->
+  </div>
+</section>
+
+<hr class="pack-divider"/>
+
+<!-- ============ RIYA & NAINA — FRIENDSHIP ============ -->
+<section class="pack-section" id="riya-naina">
+  <div class="pack-header">
+    <div class="pack-header-left">
+      <span class="tag">Best Friends · Birthday</span>
+      <h2>Riya & Naina — Friendship Birthday Wrapped</h2>
+      <p>A funny, warm friendship keepsake. Violet &amp; coral palette.</p>
+    </div>
+    <div class="pack-meta">
+      642 synthetic messages · 88 active days<br/>
+      Friendship &amp; birthday gifting variant
+    </div>
+  </div>
+
+  <div class="tier-label">Free teaser cards</div>
+  <div class="cards-grid" id="rn-free-grid"></div>
+
+  <div class="tier-label" style="margin-top:48px;">Paid pack cards</div>
+  <div class="cards-grid" id="rn-paid-grid"></div>
+</section>
+
+<hr class="pack-divider"/>
+
+<!-- ============ KABIR & ANAYA — WEDDING ============ -->
+<section class="pack-section" id="kabir-anaya">
+  <div class="pack-header">
+    <div class="pack-header-left">
+      <span class="tag">Wedding · Memory Atlas</span>
+      <h2>Kabir & Anaya — Wedding Memory Atlas</h2>
+      <p>Premium wedding &amp; proposal keepsake. Champagne &amp; gold palette.</p>
+    </div>
+    <div class="pack-meta">
+      4,182 synthetic messages · 241 active days<br/>
+      Wedding planner &amp; B2B partner variant
+    </div>
+  </div>
+
+  <div class="tier-label">Free teaser cards</div>
+  <div class="cards-grid" id="ka-free-grid"></div>
+
+  <div class="tier-label" style="margin-top:48px;">Paid pack cards</div>
+  <div class="cards-grid" id="ka-paid-grid"></div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <h2>Want one made from your actual chat?</h2>
+  <p>DM "WRAPPED" on Instagram. Founding price ₹999. 48h delivery.</p>
+  <a href="https://instagram.com/getmemorywrapped" target="_blank" class="btn-gold">Order on Instagram</a>
+  <a href="index.html" class="btn-secondary-sm">Back to landing page</a>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <button class="modal-prev" onclick="modalNav(-1); event.stopPropagation()">&#8592;</button>
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <object id="modal-obj" type="image/svg+xml" style="max-height:85vh;max-width:min(480px,90vw);border-radius:10px;"></object>
+  </div>
+  <button class="modal-next" onclick="modalNav(1); event.stopPropagation()">&#8594;</button>
+</div>
+
+<script>
+  const BASE = 'samples/generated_outputs/';
+  const PACKS = {
+    'am-free':  { base: BASE + 'aarav_meera_anniversary/cards/free_teaser/', count: 6,  tier: 'free' },
+    'am-paid':  { base: BASE + 'aarav_meera_anniversary/cards/paid_pack/',   count: 14, tier: 'paid' },
+    'rn-free':  { base: BASE + 'riya_naina_friendship_birthday/cards/free_teaser/', count: 6,  tier: 'free' },
+    'rn-paid':  { base: BASE + 'riya_naina_friendship_birthday/cards/paid_pack/',   count: 14, tier: 'paid' },
+    'ka-free':  { base: BASE + 'kabir_anaya_wedding/cards/free_teaser/', count: 6,  tier: 'free' },
+    'ka-paid':  { base: BASE + 'kabir_anaya_wedding/cards/paid_pack/',   count: 14, tier: 'paid' },
+  };
+
+  const allSvgs = []; // flat list for modal navigation
+  let modalIdx = 0;
+
+  function pad(n) { return String(n).padStart(2,'0'); }
+
+  function buildGrid(packKey) {
+    const pack = PACKS[packKey];
+    const grid = document.getElementById(packKey + '-grid');
+    if (!grid) return;
+    for (let i = 1; i <= pack.count; i++) {
+      const src = pack.base + 'card_' + pad(i) + '.svg';
+      const idx = allSvgs.length;
+      allSvgs.push(src);
+
+      const item = document.createElement('div');
+      item.className = 'card-item';
+      item.onclick = () => openModal(idx);
+
+      const badge = document.createElement('div');
+      badge.className = pack.tier === 'free' ? 'card-free-badge' : 'card-paid-badge';
+      badge.textContent = pack.tier === 'free' ? 'FREE' : 'PAID';
+
+      const obj = document.createElement('object');
+      obj.type = 'image/svg+xml';
+      obj.data = src;
+      obj.style.cssText = 'width:100%;aspect-ratio:9/16;display:block;pointer-events:none;';
+
+      // Fallback text if SVG not yet generated
+      obj.innerHTML = '<div style="aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.03);color:#5a5040;font-size:0.75rem;text-align:center;padding:12px;">Card ' + i + '<br/>(loading…)</div>';
+
+      const cap = document.createElement('div');
+      cap.className = 'card-caption';
+      cap.textContent = 'Card ' + i;
+
+      item.appendChild(badge);
+      item.appendChild(obj);
+      item.appendChild(cap);
+      grid.appendChild(item);
+    }
+  }
+
+  Object.keys(PACKS).forEach(buildGrid);
+
+  function openModal(idx) {
+    modalIdx = idx;
+    document.getElementById('modal-obj').data = allSvgs[idx];
+    document.getElementById('modal').classList.add('open');
+  }
+  function closeModal(e) {
+    if (!e || e.target === document.getElementById('modal')) {
+      document.getElementById('modal').classList.remove('open');
+    }
+  }
+  function modalNav(dir) {
+    modalIdx = (modalIdx + dir + allSvgs.length) % allSvgs.length;
+    document.getElementById('modal-obj').data = allSvgs[modalIdx];
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') modalNav(1);
+    if (e.key === 'ArrowLeft') modalNav(-1);
+  });
+
+  // Sticky tab highlight on scroll
+  const sections = ['aarav-meera','riya-naina','kabir-anaya'];
+  const tabs = document.querySelectorAll('.tab-btn');
+  window.addEventListener('scroll', () => {
+    let current = sections[0];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    tabs.forEach(t => {
+      t.classList.toggle('active', t.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

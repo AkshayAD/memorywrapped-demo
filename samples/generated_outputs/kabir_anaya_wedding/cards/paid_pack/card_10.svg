@@ -1,0 +1,44 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0a06"/>
+      <stop offset="0.55" stop-color="#1a1508"/>
+      <stop offset="1" stop-color="#251e0a"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="920" cy="240" r="270" fill="#d4a843" opacity="0.16" filter="url(#glow)"/>
+  <circle cx="140" cy="1700" r="320" fill="#f0e6c8" opacity="0.10" filter="url(#glow)"/>
+  <rect x="78" y="92" width="924" height="1736" rx="54" fill="rgba(255,255,255,0.03)" stroke="rgba(212,168,67,0.22)" stroke-width="1.5"/>
+  <text x="120" y="180" fill="#d4a843" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">MEMORYWRAPPED DEMO</text>
+  <line x1="120" y1="210" x2="500" y2="210" stroke="#d4a843" stroke-width="1" opacity="0.35"/>
+  <text x="960" y="180" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="28" text-anchor="end">10 / 14</text>
+  <text x="120" y="298" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="34" letter-spacing="4">KABIR &amp; ANAYA · PAID PACK</text>
+  <!-- Building / venue icon -->
+  <rect x="460" y="370" width="160" height="130" fill="none" stroke="#d4a843" stroke-width="2.5" opacity="0.45"/>
+  <rect x="490" y="400" width="36" height="36" fill="none" stroke="#d4a843" stroke-width="1.5" opacity="0.4"/>
+  <rect x="554" y="400" width="36" height="36" fill="none" stroke="#d4a843" stroke-width="1.5" opacity="0.4"/>
+  <rect x="510" y="450" width="60" height="50" fill="rgba(212,168,67,0.2)"/>
+  <line x1="430" y1="500" x2="660" y2="500" stroke="#d4a843" stroke-width="1.5" opacity="0.3"/>
+  <polygon points="540,340 450,390 630,390" fill="none" stroke="#d4a843" stroke-width="2" opacity="0.4"/>
+  <text x="120" y="630" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="36" letter-spacing="5">THE VENUE SEARCH</text>
+  <text x="120" y="726" fill="#fdf6e3" font-family="Georgia, serif" font-size="76" font-weight="600">
+    <tspan x="120" dy="0">The venue</tspan>
+    <tspan x="120" dy="94">conversations</tspan>
+  </text>
+  <text x="120" y="970" fill="#d4a843" font-family="Georgia, serif" font-size="152" font-weight="700">31</text>
+  <text x="120" y="1078" fill="#f0e6c8" font-family="Georgia, serif" font-size="56">planning threads</text>
+  <line x1="120" y1="1138" x2="960" y2="1138" stroke="#d4a843" stroke-width="1" opacity="0.22"/>
+  <text x="120" y="1280" fill="#e8d5a3" font-family="Arial, sans-serif" font-size="46">
+    <tspan x="120" dy="0">31 conversations</tspan>
+    <tspan x="120" dy="64">about one venue.</tspan>
+    <tspan x="120" dy="64">The right one was</tspan>
+    <tspan x="120" dy="64">chosen on thread 31.</tspan>
+  </text>
+  <text x="120" y="1740" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="28">Synthetic demo · private by default · quotes need approval</text>
+  <text x="960" y="1800" fill="#9a8a6a" font-family="Arial, sans-serif" font-size="26" text-anchor="end">memorywrapped.in</text>
+</svg>

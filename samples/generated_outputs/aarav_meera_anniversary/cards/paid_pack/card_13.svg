@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#090910"/>
+      <stop offset="0.55" stop-color="#15101b"/>
+      <stop offset="1" stop-color="#2a1823"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="18" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="900" cy="250" r="260" fill="#e8b4b8" opacity="0.16" filter="url(#glow)"/>
+  <circle cx="120" cy="1680" r="340" fill="#c9a96e" opacity="0.13" filter="url(#glow)"/>
+  <rect x="78" y="92" width="924" height="1736" rx="54" fill="rgba(255,255,255,0.035)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="120" y="180" fill="#c9a96e" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">WIFE/HUSBAND ERA WRAPPED</text>
+  <text x="120" y="360" fill="#f7efe4" font-family="Georgia, serif" font-size="82" font-weight="600">
+    <tspan x="120" dy="0">PDF keepsake</tspan>
+    
+  </text>
+  <text x="120" y="850" fill="#e8b4b8" font-family="Georgia, serif" font-size="118" font-weight="700">
+    <tspan x="120" dy="0">8–10 pages</tspan>
+    
+  </text>
+  <foreignObject x="120" y="1190" width="840" height="360">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: Arial, sans-serif; color:#d8d0c3; font-size:46px; line-height:1.35;">
+      A downloadable memory booklet for the core ₹999 offer.
+    </div>
+  </foreignObject>
+  <text x="120" y="1740" fill="#8f887c" font-family="Arial, sans-serif" font-size="30">Synthetic demo · private by default · quotes need approval</text>
+</svg>

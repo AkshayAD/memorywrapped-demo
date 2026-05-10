@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aarav & Meera | MemoryWrapped Demo</title>
+    <meta name="description" content="A MemoryWrapped demo — see how your WhatsApp chat becomes a cinematic private keepsake. Synthetic data only." />
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="%230a0a0f"/><circle cx="25" cy="32" r="15" fill="none" stroke="%23c9a96e" stroke-width="4"/><circle cx="39" cy="32" r="15" fill="none" stroke="%23e8b4b8" stroke-width="4"/></svg>' />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Cinematic Preloader -->
+    <div id="preloader">
+      <div class="monogram-loader">MW</div>
+    </div>
+
+    <!-- Mouse Glow Effect -->
+    <div id="cursor-glow"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="MemoryWrapped Demo">
+        <span class="brand-mark" aria-hidden="true" style="color:var(--gold);">✧</span>
+        <span style="letter-spacing: 2px;">MEMORYWRAPPED DEMO</span>
+      </a>
+      <nav aria-label="Page sections">
+        <a href="#atlas">The Atlas</a>
+        <a href="#tabs">Chapters</a>
+        <a href="#cta">Digital Keepsakes</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- Hero Section with Canvas Particles -->
+      <section class="hero">
+        <canvas id="canvas-container"></canvas>
+        <div class="hero-content reveal">
+          <p class="privacy-note">A Luxury Digital Keepsake</p>
+          <h1 id="page-title">Aarav & Meera</h1>
+          <!-- Typewriter container -->
+          <p id="page-subtitle" class="lede"></p>
+          
+          <div class="hero-scroll-indicator reveal" style="margin-top: 60px; display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0; animation: fadeIn 2s 2s forwards;">
+            <span style="font-family: 'Inter', sans-serif; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);">Discover Our Journey</span>
+            <div class="scroll-arrow" style="width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); animation: bounce 2s infinite;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Overview Stats -->
+      <section id="atlas" class="stats-strip" aria-label="Chat overview">
+        <div class="section-intro">
+          <p class="section-kicker">The Atlas</p>
+          <h2 class="reveal">206k+ signals of love.</h2>
+          <p class="reveal">
+            This living archive captures the rhythm, tenderness, late-night conversations, and the small repeated rituals that built a shared world.
+          </p>
+        </div>
+        <div id="overview-stats" class="stats-grid"></div>
+      </section>
+
+      <!-- Chapters Shell -->
+      <section id="tabs" class="chapter-shell">
+        <div class="section-intro reveal">
+          <p class="section-kicker">Chapters</p>
+          <h2>Explore the story from five angles.</h2>
+        </div>
+        <div class="tab-bar reveal" role="tablist" aria-label="Story chapters">
+          <button class="tab-button active" type="button" data-tab="story">Story</button>
+          <button class="tab-button" type="button" data-tab="rhythm">Rhythm</button>
+          <button class="tab-button" type="button" data-tab="voices">Voices</button>
+          <button class="tab-button" type="button" data-tab="language">Language</button>
+          <button class="tab-button" type="button" data-tab="memories">Memories</button>
+        </div>
+
+        <section id="tab-story" class="tab-panel active" aria-label="Story chapter"></section>
+        <section id="tab-rhythm" class="tab-panel" aria-label="Rhythm chapter"></section>
+        <section id="tab-voices" class="tab-panel" aria-label="Voices chapter"></section>
+        <section id="tab-language" class="tab-panel" aria-label="Language chapter"></section>
+        <section id="tab-memories" class="tab-panel" aria-label="Memories chapter"></section>
+      </section>
+
+      <!-- CTA / Sales Section -->
+      <section id="cta" class="cta-section reveal">
+        <h2>Want your own love story immortalized?</h2>
+        <p style="max-width: 600px; margin: 0 auto 40px; font-size: 1.2rem;">
+          We transform your WhatsApp history into a secure, breathtaking digital atlas. Perfect for anniversaries, weddings, or preserving memories forever.
+        </p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="button">Commission Your Atlas</a>
+          <button onclick="window.print()" class="button" style="background: transparent; border: 1px solid var(--gold); color: var(--gold); box-shadow: none;">Save Keepsake PDF</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="closing">
+      <span id="generated-at" style="color: var(--text-muted); font-size: 0.85rem;"></span>
+      <span style="color: var(--gold); font-family: 'Playfair Display', serif;">Crafted with love</span>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="analysis-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

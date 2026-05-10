@@ -1,0 +1,37 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d0916"/>
+      <stop offset="0.55" stop-color="#1a0f2e"/>
+      <stop offset="1" stop-color="#2a1640"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/>
+  <circle cx="920" cy="240" r="270" fill="#f4a261" opacity="0.14" filter="url(#glow)"/>
+  <circle cx="140" cy="1700" r="320" fill="#c77dff" opacity="0.14" filter="url(#glow)"/>
+  <rect x="78" y="92" width="924" height="1736" rx="54" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.13)" stroke-width="1.5"/>
+  <text x="120" y="180" fill="#f4a261" font-family="Arial, sans-serif" font-size="34" letter-spacing="7">MEMORYWRAPPED DEMO</text>
+  <line x1="120" y1="210" x2="480" y2="210" stroke="#f4a261" stroke-width="1.5" opacity="0.4"/>
+  <rect x="120" y="248" width="560" height="56" rx="28" fill="#c77dff" opacity="0.15"/>
+  <text x="400" y="283" fill="#c77dff" font-family="Arial, sans-serif" font-size="30" text-anchor="middle" letter-spacing="2">Riya &amp; Naina · Full Pack</text>
+  <text x="120" y="420" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="38" letter-spacing="3">SUPPORT SYSTEM STATS</text>
+  <text x="120" y="530" fill="#f7f0ff" font-family="Georgia, serif" font-size="82" font-weight="600">Support</text>
+  <text x="120" y="630" fill="#f7f0ff" font-family="Georgia, serif" font-size="82" font-weight="600">counter</text>
+  <rect x="120" y="680" width="680" height="8" rx="4" fill="#c77dff" opacity="0.3"/>
+  <text x="540" y="860" font-family="Arial, sans-serif" font-size="180" text-anchor="middle">&#x1FAF6;</text>
+  <text x="120" y="1010" fill="#c77dff" font-family="Georgia, serif" font-size="148" font-weight="700">23</text>
+  <text x="120" y="1100" fill="#d4bfff" font-family="Georgia, serif" font-size="58">detected moments</text>
+  <text x="120" y="1170" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="36">of one showing up for the other</text>
+  <line x1="120" y1="1230" x2="960" y2="1230" stroke="#c77dff" stroke-width="1.5" opacity="0.25"/>
+  <text x="120" y="1320" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">23 moments where one</text>
+  <text x="120" y="1380" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">of you showed up exactly</text>
+  <text x="120" y="1440" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">when the other</text>
+  <text x="120" y="1500" fill="#d4bfff" font-family="Arial, sans-serif" font-size="44">needed it.</text>
+  <text x="120" y="1620" fill="#f4a261" font-family="Arial, sans-serif" font-size="34" opacity="0.7">&#x2764; that&#39;s the whole point of friendship</text>
+  <text x="120" y="1740" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="28">Synthetic demo · private by default · quotes need approval</text>
+  <text x="960" y="1800" fill="#8a7fa0" font-family="Arial, sans-serif" font-size="26" text-anchor="end">memorywrapped.in</text>
+</svg>
