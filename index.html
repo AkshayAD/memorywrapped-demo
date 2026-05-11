@@ -263,6 +263,31 @@
     /* DIVIDER */
     .divider { border: none; border-top: 1px solid var(--card-border); }
 
+    /* UPI PAY */
+    .upi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-bottom: 48px; }
+    .upi-card {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 12px; padding: 32px 24px; text-align: center;
+      transition: border-color 0.2s;
+    }
+    .upi-card:hover { border-color: rgba(201,169,110,0.4); }
+    .upi-card.featured { border-color: rgba(201,169,110,0.5); background: rgba(201,169,110,0.06); }
+    .upi-tier { font-family:'Arial',sans-serif; font-size:0.72rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+    .upi-amount { font-size:2rem; font-weight:600; margin-bottom:20px; }
+    .qr-box { display:flex; justify-content:center; margin-bottom:20px; }
+    .qr-box canvas, .qr-box img { border-radius:8px; padding:8px; background:#fff; }
+    .upi-btn { display:block; margin-top:0; font-family:'Arial',sans-serif; font-size:0.82rem; letter-spacing:0.08em; padding:12px 20px; }
+    .upi-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px; margin-bottom: 32px;
+    }
+    .upi-step {
+      font-family:'Arial',sans-serif; font-size:0.85rem; color:var(--muted);
+      padding: 16px 20px; border-left: 2px solid rgba(201,169,110,0.3); line-height:1.5;
+    }
+    .upi-id-note { font-family:'Arial',sans-serif; font-size:0.85rem; color:var(--muted); text-align:center; }
+    .upi-id-note code { color:var(--gold); font-size:0.95rem; }
+
     @media (max-width: 600px) {
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
@@ -280,6 +305,7 @@
   <div class="nav-links">
     <a href="#how">How it works</a>
     <a href="#pricing">Pricing</a>
+    <a href="#pay">Order via UPI</a>
     <a href="#partners">Partners</a>
     <a href="#privacy">Privacy</a>
   </div>
@@ -381,7 +407,7 @@
 <section class="section" id="pricing">
   <p class="section-eyebrow">Pricing</p>
   <h2>Choose your keepsake.</h2>
-  <p class="section-sub">Founding offer pricing — locked in for the first 50 orders. Order on Gumroad or DM "WRAPPED" on Instagram.</p>
+  <p class="section-sub">Founding offer pricing — locked in for the first 50 orders. Pay directly via UPI below, or DM "WRAPPED" on Instagram.</p>
   <div class="pricing-grid">
 
     <div class="price-card">
@@ -395,7 +421,7 @@
         <li>Private download</li>
         <li>Quote approval</li>
       </ul>
-      <a href="https://dewalwar.gumroad.com/l/mewjz?utm_source=landing&utm_medium=website" target="_blank" class="btn-outline">Order — ₹499</a>
+      <a href="#pay" class="btn-outline">Order — ₹499</a>
     </div>
 
     <div class="price-card featured">
@@ -411,7 +437,7 @@
         <li>Quote approval</li>
         <li>48h delivery during beta</li>
       </ul>
-      <a href="https://dewalwar.gumroad.com/l/mewjz?utm_source=landing&utm_medium=website" target="_blank" class="btn-gold">Order — ₹999</a>
+      <a href="#pay" class="btn-gold">Order — ₹999</a>
     </div>
 
     <div class="price-card">
@@ -426,13 +452,53 @@
         <li>Quote approval panel</li>
         <li>One revision round</li>
       </ul>
-      <a href="https://dewalwar.gumroad.com/l/mewjz?utm_source=landing&utm_medium=website" target="_blank" class="btn-outline">Order — ₹2,999</a>
+      <a href="#pay" class="btn-outline">Order — ₹2,999</a>
     </div>
 
   </div>
   <p style="font-family:'Arial',sans-serif; font-size:0.82rem; color:var(--muted); text-align:center; margin-top:32px;">
     Wedding &amp; event partner pricing available — <a href="#partners">see below</a>.
   </p>
+</section>
+
+<hr class="divider"/>
+
+<!-- PAY VIA UPI -->
+<section class="section" id="pay">
+  <p class="section-eyebrow">Order now</p>
+  <h2>Pay directly via UPI</h2>
+  <p class="section-sub">Scan with GPay, PhonePe, or Paytm. After payment, DM your screenshot to <a href="https://instagram.com/getmemorywrapped" target="_blank">@getmemorywrapped</a> with your name — delivered in 5 days.</p>
+
+  <div class="upi-grid">
+    <div class="upi-card">
+      <div class="upi-tier">Mini Wrapped</div>
+      <div class="upi-amount">₹499</div>
+      <div class="qr-box"><div id="qr-499"></div></div>
+      <a href="upi://pay?pa=9962740490@upi&pn=MemoryWrapped&am=499&cu=INR" class="btn-outline upi-btn">Open GPay / PhonePe →</a>
+    </div>
+    <div class="upi-card featured">
+      <div class="price-badge">Most popular</div>
+      <div class="upi-tier">Anniversary Wrapped</div>
+      <div class="upi-amount">₹999</div>
+      <div class="qr-box"><div id="qr-999"></div></div>
+      <a href="upi://pay?pa=9962740490@upi&pn=MemoryWrapped&am=999&cu=INR" class="btn-gold upi-btn">Open GPay / PhonePe →</a>
+    </div>
+    <div class="upi-card">
+      <div class="upi-tier">Premium Website</div>
+      <div class="upi-amount">₹2,999</div>
+      <div class="qr-box"><div id="qr-2999"></div></div>
+      <a href="upi://pay?pa=9962740490@upi&pn=MemoryWrapped&am=2999&cu=INR" class="btn-outline upi-btn">Open GPay / PhonePe →</a>
+    </div>
+  </div>
+
+  <div class="upi-steps">
+    <div class="upi-step"><strong style="color:var(--gold);">01</strong> — Scan the QR or tap the button to open your UPI app</div>
+    <div class="upi-step"><strong style="color:var(--gold);">02</strong> — Complete payment from GPay, PhonePe, or Paytm</div>
+    <div class="upi-step"><strong style="color:var(--gold);">03</strong> — DM your payment screenshot to @getmemorywrapped with your name + occasion</div>
+    <div class="upi-step"><strong style="color:var(--gold);">04</strong> — Receive your Wrapped as a private download in 5 days</div>
+  </div>
+
+  <p class="upi-id-note">UPI ID: <code>9962740490@upi</code> &nbsp;·&nbsp; <a href="https://instagram.com/getmemorywrapped" target="_blank">DM us on Instagram</a> for any questions</p>
 </section>
 
 <hr class="divider"/>
@@ -513,7 +579,7 @@
   <h2>Make a gift only the two of you will understand.</h2>
   <p>🔒 Your chat never leaves your device. Start with the ₹999 founding offer — delivered in 5 days.</p>
   <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
-    <a href="https://dewalwar.gumroad.com/l/mewjz?utm_source=landing&utm_medium=website" target="_blank" class="btn-primary">Order on Gumroad — from ₹499</a>
+    <a href="#pay" class="btn-primary">Order via UPI — from ₹499</a>
     <a href="https://instagram.com/getmemorywrapped" target="_blank" class="btn-outline" style="margin-top:0;">DM on Instagram</a>
   </div>
 </div>
@@ -524,5 +590,21 @@
   <div>© 2026 MemoryWrapped</div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  [
+    { id: 'qr-499',  amount: 499 },
+    { id: 'qr-999',  amount: 999 },
+    { id: 'qr-2999', amount: 2999 },
+  ].forEach(function(t) {
+    new QRCode(document.getElementById(t.id), {
+      text: 'upi://pay?pa=9962740490@upi&pn=MemoryWrapped&am=' + t.amount + '&cu=INR',
+      width: 160, height: 160,
+      colorDark: '#1a1208',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  });
+</script>
 </body>
 </html>
