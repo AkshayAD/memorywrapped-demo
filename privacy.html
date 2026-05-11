@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy by Design — MemoryWrapped</title>
+  <meta name="description" content="Your WhatsApp chat never leaves your device. Verify it yourself in DevTools. The architecture, the seven promises, and the open code behind MemoryWrapped.">
+  <style>
+    :root {
+      --bg: #0D0D0D;
+      --bg-2: #161616;
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-dark: #9A7B2E;
+      --ink: #F4EEDC;
+      --ink-soft: #C7BFA8;
+      --rule: #2A2620;
+      --good: #6ECF8C;
+      --warn: #E0A45A;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      font-size: 17px;
+    }
+    a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(232, 201, 106, 0.3); }
+    a:hover { border-bottom-color: var(--gold-light); }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+    header.topnav {
+      border-bottom: 1px solid var(--rule);
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      font-size: 14px;
+      text-transform: uppercase;
+      border: none;
+    }
+    .nav-links a {
+      margin-left: 20px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      border: none;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    h1 {
+      font-size: 44px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    h1 .lock { color: var(--gold); }
+    h2 {
+      font-size: 26px;
+      letter-spacing: -0.005em;
+      margin: 56px 0 16px;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 28px 0 8px;
+      color: var(--ink);
+    }
+    p { margin-bottom: 14px; color: var(--ink-soft); }
+    p.lead {
+      font-size: 19px;
+      color: var(--ink);
+      max-width: 640px;
+    }
+    .hero-claim {
+      background: linear-gradient(180deg, #16120A 0%, #0D0D0D 100%);
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      border-radius: 14px;
+      padding: 28px;
+      margin: 32px 0 16px;
+    }
+    .hero-claim .big {
+      font-size: 22px;
+      color: var(--ink);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .hero-claim .small {
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .cta {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      border: 1px solid var(--gold);
+      color: var(--bg);
+      background: var(--gold);
+      transition: transform 0.15s, background 0.15s;
+    }
+    .cta:hover { transform: translateY(-1px); background: var(--gold-light); border-color: var(--gold-light); }
+    .cta.ghost {
+      background: transparent;
+      color: var(--gold);
+    }
+    .cta.ghost:hover { background: rgba(201, 168, 76, 0.1); }
+
+    .architecture-flow {
+      background: var(--bg-2);
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      font-family: ui-monospace, "SF Mono", Consolas, monospace;
+      font-size: 14px;
+      line-height: 1.9;
+      color: var(--ink-soft);
+      overflow-x: auto;
+    }
+    .architecture-flow .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .architecture-flow .step .num {
+      flex: 0 0 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.15);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .architecture-flow .step .text { flex: 1; padding-top: 3px; }
+    .architecture-flow .step .text b { color: var(--ink); font-weight: 600; }
+
+    .promise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 20px 0 8px;
+    }
+    .promise {
+      background: var(--bg-2);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .promise h4 {
+      color: var(--gold-light);
+      font-size: 15px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .promise p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    details.faq {
+      border-bottom: 1px solid var(--rule);
+      padding: 18px 0;
+    }
+    details.faq summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 17px;
+      list-style: none;
+      padding-right: 24px;
+      position: relative;
+    }
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq summary::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      font-size: 22px;
+      font-weight: 300;
+    }
+    details.faq[open] summary::after { content: "−"; }
+    details.faq p {
+      margin-top: 12px;
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+    details.faq code {
+      background: rgba(201, 168, 76, 0.1);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: var(--gold-light);
+    }
+
+    .verify-card {
+      background: linear-gradient(135deg, rgba(110, 207, 140, 0.08) 0%, rgba(13, 13, 13, 1) 100%);
+      border: 1px solid rgba(110, 207, 140, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .verify-card h3 {
+      color: var(--good);
+      margin-top: 0;
+    }
+    .verify-card ol {
+      padding-left: 22px;
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+    .verify-card ol li { margin-bottom: 8px; }
+
+    .tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .tier-table th, .tier-table td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .tier-table th {
+      color: var(--gold-light);
+      font-weight: 600;
+      background: var(--bg-2);
+    }
+    .tier-table .recommended {
+      background: rgba(201, 168, 76, 0.07);
+    }
+    .tier-table .recommended td:first-child { color: var(--gold); font-weight: 600; }
+
+    footer.page-footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 24px;
+      max-width: 760px;
+      margin: 64px auto 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+      text-align: center;
+    }
+    footer.page-footer a { font-size: 13px; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 32px; }
+      h2 { font-size: 22px; }
+      .container { padding: 32px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topnav">
+    <a href="/" class="brand">MemoryWrapped</a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/card_gallery.html">Gallery</a>
+      <a href="/analyzer/">Analyzer</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Privacy <span class="lock">🔒</span> by design,<br>not by promise.</h1>
+    <p class="lead">Most "chat-based" products ask you to upload your WhatsApp export and then promise to handle it carefully. We took a different approach: <b>your chat never reaches us in the first place</b>. The analyzer runs entirely in your browser. You curate the moments. We only ever see what you explicitly approve.</p>
+
+    <div class="hero-claim">
+      <div class="big">Zero uploads. Verifiable in 30 seconds.</div>
+      <div class="small">Open the analyzer page, press <code style="background:rgba(201,168,76,0.12);padding:1px 6px;border-radius:4px;color:var(--gold-light);">F12</code> to open DevTools, click the Network tab, drag-drop your chat. The Network tab stays empty. Because there's nothing to send.</div>
+    </div>
+
+    <div class="cta-row">
+      <a href="/analyzer/" class="cta">Try the analyzer →</a>
+      <a href="#verify" class="cta ghost">How to verify yourself</a>
+    </div>
+
+    <h2>The architecture, in plain language</h2>
+    <div class="architecture-flow">
+      <div class="step"><div class="num">1</div><div class="text"><b>You stay on your device.</b> You open <code>/analyzer/</code> in your browser. The page is plain HTML and JavaScript — no backend.</div></div>
+      <div class="step"><div class="num">2</div><div class="text"><b>You drag-drop your chat .txt</b> into the page. The file is read by JavaScript that runs <i>in your browser tab</i>, not on a server.</div></div>
+      <div class="step"><div class="num">3</div><div class="text"><b>The analyzer extracts moments locally</b> — top quotes, key dates, emoji stats, milestones. Sensitive lines (OTPs, phone numbers, bank info) are auto-flagged with a 🔒 badge.</div></div>
+      <div class="step"><div class="num">4</div><div class="text"><b>You curate.</b> Toggle each moment ✅ or ❌. Sensitive items start unchecked. You see exactly what we'd see.</div></div>
+      <div class="step"><div class="num">5</div><div class="text"><b>You download a manifest</b> — a small JSON file containing only the moments you approved.</div></div>
+      <div class="step"><div class="num">6</div><div class="text"><b>You send us the manifest</b>, not the chat. We design your cards from the manifest. Your raw chat never travels.</div></div>
+    </div>
+
+    <h2>The seven promises</h2>
+    <div class="promise-grid">
+      <div class="promise"><h4>1 · No raw chat upload by default</h4><p>The browser analyzer is the default intake path. Your raw chat stays on your device.</p></div>
+      <div class="promise"><h4>2 · Quote approval is mandatory</h4><p>Every moment we use was explicitly approved by you in the analyzer. Nothing else.</p></div>
+      <div class="promise"><h4>3 · No model training</h4><p>Your approved moments are used to design YOUR cards only. Never used to train any AI model. Ever.</p></div>
+      <div class="promise"><h4>4 · No human review beyond design</h4><p>One person (Akshay) designs your cards from your manifest. No QA team, no contractors, no third parties.</p></div>
+      <div class="promise"><h4>5 · Automatic deletion</h4><p>Your manifest file is deleted within 24 hours of delivery. Cloud snapshots purge within 30 days.</p></div>
+      <div class="promise"><h4>6 · Auto-redaction of sensitive content</h4><p>Phone numbers, emails, URLs, OTPs, UPI, bank, password keywords are auto-flagged and pre-unchecked in the analyzer.</p></div>
+      <div class="promise"><h4>7 · Right to be forgotten</h4><p>DM us "DELETE MY DATA" anytime. We confirm within 24 hours and purge everything within 7 days. No questions.</p></div>
+    </div>
+
+    <h2 id="verify">Verify it yourself (30 seconds)</h2>
+    <div class="verify-card">
+      <h3>How to confirm zero uploads, step-by-step</h3>
+      <ol>
+        <li>Open <a href="/analyzer/">/analyzer/</a> in Google Chrome (or any modern browser).</li>
+        <li>Press <code style="background:rgba(110,207,140,0.15);padding:1px 6px;border-radius:4px;color:var(--good);">F12</code> to open Developer Tools. Click the <b>Network</b> tab.</li>
+        <li>Press the round <b>⏺ Record</b> button if it isn't already red.</li>
+        <li>Drag and drop your WhatsApp <code>.txt</code> export onto the page.</li>
+        <li>Watch the Network tab. <b>It stays empty.</b> The analyzer makes zero network requests during parsing.</li>
+        <li>Bonus: click the <b>Sources</b> tab — you can read every line of code that just ran. There's nothing hidden.</li>
+      </ol>
+      <p style="margin-top: 14px; color: var(--ink-soft); font-size: 14px;">The page logs this exact challenge to the Console on load: <code style="background:rgba(110,207,140,0.15);padding:1px 6px;border-radius:4px;color:var(--good);">"MemoryWrapped analyzer: 100% local. No network. Verify in DevTools."</code></p>
+    </div>
+
+    <h2>Three intake tiers — pick what feels right</h2>
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>How it works</th>
+          <th>What we see</th>
+          <th>Output quality</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="recommended">
+          <td>🔒 Browser Analyzer<br><span style="font-weight: 400; color: var(--ink-soft); font-size: 12px;">(Recommended)</span></td>
+          <td>You curate moments in your browser. Send us only the manifest JSON. Chat never leaves your device.</td>
+          <td>Only the moments you approved.</td>
+          <td>Great — you hand-picked every moment.</td>
+        </tr>
+        <tr>
+          <td>✍️ Paste Quotes</td>
+          <td>You paste 20–30 favorite quotes directly. No file upload at all.</td>
+          <td>Only what you typed.</td>
+          <td>Good — curated by memory.</td>
+        </tr>
+        <tr>
+          <td>📥 Full Analysis Path<br><span style="font-weight: 400; color: var(--ink-soft); font-size: 12px;">(Richer output)</span></td>
+          <td>You send the full chat export. Automated pipeline runs — no human reads it. Deleted within 24 hours of analysis completing.</td>
+          <td>Raw chat, briefly. Auto-analyzed, then auto-deleted.</td>
+          <td>Best — full timeline, every milestone, emoji stats, relationship arc.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>The Full Analysis Path — technical details</h2>
+    <p>For customers who want the richest possible output and are comfortable trusting our automated pipeline, the Full Analysis Path gives us access to your complete conversation history. Here's exactly what happens — technically, not just in policy language.</p>
+    <div class="architecture-flow">
+      <div class="step"><div class="num">1</div><div class="text"><b>You send the .txt export to us</b> via DM or secure link. This is the only step where you make a trust decision.</div></div>
+      <div class="step"><div class="num">2</div><div class="text"><b>An automated script runs immediately.</b> It's the same <code>analyze_chat.py</code> pipeline that powers the browser analyzer — same redaction logic, same sensitive-content detection. No human reads the raw chat.</div></div>
+      <div class="step"><div class="num">3</div><div class="text"><b>The script outputs a structured analysis file</b> — top quotes across the full timeline, every milestone date, relationship arc, emoji stats, recurring motifs, tone patterns. This is what we use for design. The raw chat is no longer needed.</div></div>
+      <div class="step"><div class="num">4</div><div class="text"><b>The raw chat is deleted within 24 hours of the analysis running</b> — not 24 hours of delivery, but 24 hours of analysis. We keep only the structured JSON output, not the source.</div></div>
+      <div class="step"><div class="num">5</div><div class="text"><b>Akshay (only) designs your cards</b> from the structured analysis. He never opens the raw chat file — by the time he works on your order, it's already deleted.</div></div>
+      <div class="step"><div class="num">6</div><div class="text"><b>The analysis JSON is deleted within 24 hours of delivery.</b> "DELETE MY DATA" triggers immediate purge of both if somehow either still exists.</div></div>
+    </div>
+    <p><b>Why it produces better output:</b> the manifest path gives us ~11–16% of your chat (the moments you hand-picked). The Full Analysis Path gives us 100%. We can find the quote from 3 years ago you forgot about. We can chart how your relationship changed tone over time. We can surface the milestone you didn't think to include but is clearly important. The cards go from "great" to "how did you find THAT moment?"</p>
+    <p><b>The constraint:</b> this path requires you to trust that our automated pipeline does what we say and that Akshay doesn't read the raw file. We can't make that verifiable in a browser the way the analyzer can. What we can offer: the written promise above, the "DELETE MY DATA" kill-switch, and the fact that this business depends entirely on customer trust — we would not survive a single privacy violation.</p>
+
+    <h2>Frequently asked</h2>
+
+    <details class="faq">
+      <summary>Can the analyzer code change later and start uploading my chat?</summary>
+      <p>The analyzer is hosted on GitHub Pages from a public repo. Every code change is visible in commit history. You can also save the page to your computer (<code>Ctrl+S</code>) and use that local copy forever — it'll always be the version you saved, even if we update the live site. The Network tab is the live truth: if it's empty, no upload happened.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What if I have OTPs, passwords, or bank info in my chat?</summary>
+      <p>The analyzer auto-detects these and pre-unchecks them with a 🔒 badge. Specifically: phone numbers (Indian + international), emails, URLs, the keywords <i>password / OTP / UPI / bank / account / card / login / PIN / address</i>, and long numeric strings. You'd have to manually approve them — and even then we redact in the snippet text.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What about the other person in my chat? Did they consent?</summary>
+      <p>Consent for chat-based gifts is a known gray area. Our position: you have the legal right to use your own messages and quote yourself; the other person's messages are quoted only on your representation that you have permission. If the other person ever wants their quotes removed, DM us and we honor it within 7 days. We never publicly share customer content.</p>
+    </details>
+
+    <details class="faq">
+      <summary>What happens to the manifest after my order is delivered?</summary>
+      <p>Manifest file is deleted from our drive within 24 hours of delivery confirmation. Cloud storage snapshots purge within 30 days. You can also DM "DELETE MY DATA" to trigger immediate purge — confirmed within 24 hours.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Why did you build it this way? Other services just take chats.</summary>
+      <p>Every privacy-conscious person we talked to said: "the idea is beautiful but I'd never send my chat to a stranger." So we built it to solve the actual objection, not work around it. It's slightly more friction (10 mins curating vs. 30 seconds sending the file), but you stay in control the entire time. Honestly, the curating step is half the fun — you re-read your story while picking the moments you want immortalized.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Is there a printable policy I can show my partner / lawyer?</summary>
+      <p>Yes — DM us "PRINT POLICY" and we send a one-page PDF version of these promises, signed and dated. Useful if your gift recipient or family member wants to review before you proceed.</p>
+    </details>
+
+    <h2>Contact for privacy concerns</h2>
+    <p>Have a question we didn't answer? Worried about something specific? DM <a href="https://www.instagram.com/getmemorywrapped/">@getmemorywrapped</a> on Instagram with "PRIVACY:" at the start of your message and we'll prioritize the reply within 12 hours.</p>
+
+    <p>For deletion requests, write "DELETE MY DATA" in your DM. We confirm receipt within 24 hours and complete the purge within 7 days, no questions asked.</p>
+  </main>
+
+  <footer class="page-footer">
+    <p><a href="/">← Back to MemoryWrapped</a> · <a href="/analyzer/">Try the analyzer</a> · <a href="/card_gallery.html">See sample cards</a></p>
+    <p style="margin-top: 12px;">Built privacy-first. Verifiable in DevTools. Last updated 2026-05-11.</p>
+  </footer>
+
+  <script>
+    // Match the analyzer's verifiability claim — log a hash to console on page load
+    console.log("%cMemoryWrapped privacy page", "color: #C9A84C; font-size: 14px; font-weight: bold;");
+    console.log("This page has no analytics, no trackers, no third-party scripts. View page source to verify.");
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<canvas id="c" width="400" height="400"></canvas>
+<script>
+  const img = new Image();
+  img.onload = function() {
+    const ctx = document.getElementById('c').getContext('2d');
+    ctx.drawImage(img, 0, 0, 400, 400);
+    const a = document.createElement('a');
+    a.download = 'mw_logo.png';
+    a.href = document.getElementById('c').toDataURL('image/png');
+    document.body.appendChild(a);
+    a.click();
+  };
+  img.src = 'mw_logo.svg';
+</script>
+</body>
+</html>

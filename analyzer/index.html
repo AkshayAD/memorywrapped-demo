@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyzer — MemoryWrapped (runs in your browser)</title>
+  <meta name="description" content="The MemoryWrapped chat analyzer. Runs 100% in your browser. Your chat never uploads anywhere. Verify with DevTools.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topnav">
+    <a href="/" class="brand">MemoryWrapped</a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/card_gallery.html">Gallery</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>The analyzer runs <span class="lock">🔒</span> in your browser.</h1>
+      <p class="lead">Drop your WhatsApp chat below. Nothing uploads — every line of this page is JavaScript running on your device. Curate the moments you love, download a small manifest file, and send only that to MemoryWrapped.</p>
+    </section>
+
+    <div class="verify-banner">
+      <span class="icon">✓</span>
+      <div>
+        <b>Verify zero uploads in 30 seconds.</b> Press <code>F12</code> → Network tab → drop your file → watch the Network tab stay empty. <a href="/privacy.html#verify" style="color: var(--good);">Detailed steps →</a>
+      </div>
+    </div>
+
+    <!-- Step 1: Drop zone -->
+    <section id="step-drop">
+      <label class="drop-zone" id="dropZone" for="fileInput">
+        <input type="file" id="fileInput" accept=".txt,text/plain">
+        <div class="icon">📄</div>
+        <div class="big">Drop your WhatsApp chat .txt here</div>
+        <div class="small">Or <span class="small-link">click to choose a file</span></div>
+        <div class="small" style="margin-top: 16px; color: var(--ink-mute);">
+          Don't have an export yet? In WhatsApp: open chat → ⋮ → More → Export chat → Without media
+        </div>
+      </label>
+      <div class="try-sample">
+        Want to test with a synthetic chat first? <a href="#" id="loadSampleLink">Load a sample chat →</a>
+      </div>
+      <div class="error hidden" id="dropError"></div>
+    </section>
+
+    <!-- Step 2: Results -->
+    <section id="step-results" class="hidden">
+      <div class="results-header">
+        <h2 id="resultsTitle">Your chat, analyzed locally</h2>
+        <p style="color: var(--ink-soft); font-size: 14px;" id="resultsSubtitle">Toggle ✅ on the moments you'd love to see on a card. Sensitive items are pre-locked 🔒 for you.</p>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-panel="quotes">Quotes <span class="count" id="cntQuotes">0</span></button>
+        <button class="tab" data-panel="milestones">Milestones <span class="count" id="cntMilestones">0</span></button>
+        <button class="tab" data-panel="motifs">Motifs <span class="count" id="cntMotifs">0</span></button>
+        <button class="tab" data-panel="emojis">Emojis <span class="count" id="cntEmojis">0</span></button>
+      </div>
+
+      <div class="tab-panel active" id="panel-quotes"></div>
+      <div class="tab-panel" id="panel-milestones"></div>
+      <div class="tab-panel" id="panel-motifs"></div>
+      <div class="tab-panel" id="panel-emojis"><div class="emoji-grid" id="emojiGrid"></div></div>
+
+      <section class="user-inputs">
+        <h3>About this keepsake</h3>
+        <div class="field">
+          <label for="inpTitle">Title (cover)</label>
+          <input type="text" id="inpTitle" placeholder="e.g. Aarav & Meera">
+        </div>
+        <div class="field">
+          <label for="inpSubtitle">Subtitle (optional)</label>
+          <input type="text" id="inpSubtitle" placeholder="e.g. Six years, told in messages">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="inpOccasion">Occasion</label>
+            <select id="inpOccasion">
+              <option value="anniversary">Anniversary</option>
+              <option value="birthday">Birthday</option>
+              <option value="friendship">Friendship</option>
+              <option value="wedding">Wedding</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="inpTone">Tone</label>
+            <select id="inpTone">
+              <option value="balanced">Balanced</option>
+              <option value="romantic">Romantic</option>
+              <option value="funny">Funny</option>
+              <option value="emotional">Emotional</option>
+              <option value="savage">Savage</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="inpTheme">Theme</label>
+            <select id="inpTheme">
+              <option value="rose_gold">Rose + Gold</option>
+              <option value="sunset">Sunset</option>
+              <option value="mint_blush">Mint + Blush</option>
+              <option value="custom">Custom (describe below)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="inpTier">Tier</label>
+            <select id="inpTier">
+              <option value="mini">Mini — 6 cards (₹499)</option>
+              <option value="wrapped" selected>Wrapped — 14 cards (₹999)</option>
+              <option value="premium">Premium — 20 cards + website (₹2,999)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="inpNotes">Notes for the designer (optional)</label>
+          <textarea id="inpNotes" placeholder="Anything to know? Topics to avoid, must-include vibes, color preferences..."></textarea>
+        </div>
+      </section>
+
+      <div class="generate-row">
+        <div class="approval-summary">
+          You've approved <b id="approvedTotal">0</b> moments. <span id="needMoreHint" style="color: var(--ink-mute);">Pick a few more for a richer keepsake.</span>
+        </div>
+        <button class="btn-generate" id="btnGenerate" disabled>Generate Manifest →</button>
+      </div>
+    </section>
+
+    <!-- Step 3: Success -->
+    <section id="step-success" class="hidden">
+      <div class="success-panel">
+        <h3>✓ Manifest ready.</h3>
+        <p>Your downloaded file:</p>
+        <div class="filename" id="downloadedFilename">MW_manifest_*.json</div>
+        <p style="margin-top: 16px;">Send this file to MemoryWrapped via DM (<a href="https://www.instagram.com/getmemorywrapped/">@getmemorywrapped</a>) or WhatsApp. That's the only thing you ever send us — your raw chat stays with you.</p>
+        <p style="margin-top: 24px; color: var(--ink-mute); font-size: 13px;">
+          Want to start over with a different chat? <a href="#" id="resetLink">Reset analyzer →</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p><a href="/">← Home</a> · <a href="/privacy.html">Privacy</a> · <a href="manifest_schema.md">Manifest schema (.md)</a></p>
+    <p style="margin-top: 12px;">Built privacy-first. View the source: this page + analyzer.js + redaction.js — all visible in DevTools → Sources.</p>
+  </footer>
+
+  <!-- The verifiability log -->
+  <script>
+    console.log("%cMemoryWrapped analyzer: 100% local. No network. Verify in DevTools Network tab.", "color: #6ECF8C; font-size: 14px; font-weight: bold;");
+    console.log("Source files: index.html, analyzer.js, redaction.js, styles.css, manifest_schema.md");
+    console.log("Open Network tab and drop your chat. The tab will stay empty during parsing.");
+  </script>
+
+  <!-- Main app glue -->
+  <script type="module">
+    import { parseChat, analyze, buildManifest } from "./analyzer.js";
+
+    const state = {
+      analysis: null,
+      approvals: { quotes: {}, milestones: {}, motifs: {}, emojis: {} },
+      // Sensible defaults for what's pre-approved
+    };
+
+    const $ = (id) => document.getElementById(id);
+
+    function show(id) { $(id).classList.remove("hidden"); }
+    function hide(id) { $(id).classList.add("hidden"); }
+
+    /* DROP ZONE WIRING */
+    const dropZone = $("dropZone");
+    const fileInput = $("fileInput");
+    const dropError = $("dropError");
+
+    function showError(msg) {
+      dropError.textContent = msg;
+      dropError.classList.remove("hidden");
+    }
+    function clearError() {
+      dropError.classList.add("hidden");
+      dropError.textContent = "";
+    }
+
+    dropZone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropZone.classList.add("dragover");
+    });
+    dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+    dropZone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dropZone.classList.remove("dragover");
+      const file = e.dataTransfer.files[0];
+      if (file) handleFile(file);
+    });
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) handleFile(file);
+    });
+
+    function handleFile(file) {
+      clearError();
+      if (!file.name.toLowerCase().endsWith(".txt")) {
+        showError("Please drop a .txt file (WhatsApp export). PDFs, images, and zips aren't supported.");
+        return;
+      }
+      if (file.size > 25 * 1024 * 1024) {
+        showError("File is larger than 25 MB. Try exporting without media attached.");
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (ev) => processChat(ev.target.result);
+      reader.onerror = () => showError("Couldn't read the file. Try again or use a different file.");
+      reader.readAsText(file);
+    }
+
+    /* INLINE SAMPLE — embedded directly in the page so loading the sample
+       triggers ZERO network calls. Keeps the privacy demo airtight even when
+       users try the sample first. They can verify in DevTools Network tab. */
+    const SAMPLE_CHAT = `15/01/2020, 9:42 pm - Aarav: hi
+15/01/2020, 9:43 pm - Meera: hey :)
+20/01/2020, 11:15 pm - Aarav: dinner tomorrow?
+20/01/2020, 11:17 pm - Meera: yes please, biryani
+14/02/2020, 8:30 am - Aarav: good morning
+14/02/2020, 8:31 am - Meera: morning jaan ❤️
+02/05/2020, 10:12 pm - Aarav: i love you
+02/05/2020, 10:13 pm - Meera: i love you more
+15/08/2020, 6:45 pm - Aarav: reached home
+15/08/2020, 6:46 pm - Meera: take care, eat dinner
+20/12/2020, 11:30 pm - Aarav: missing you
+20/12/2020, 11:32 pm - Meera: come over tomorrow
+03/03/2021, 9:00 am - Meera: good morning ☀️
+03/03/2021, 9:05 am - Aarav: good morning love
+15/06/2021, 8:15 pm - Aarav: movie tonight?
+15/06/2021, 8:16 pm - Meera: yes! my pick this time
+01/01/2022, 12:00 am - Aarav: happy new year wifey 🥂
+01/01/2022, 12:01 am - Meera: happy new year husband ❤️🎉
+20/03/2024, 7:30 pm - Aarav: i'm sorry about earlier
+20/03/2024, 7:32 pm - Meera: forgiven. always
+04/04/2025, 6:00 pm - Aarav: 5 years tomorrow
+04/04/2025, 6:01 pm - Meera: i know. and a thousand more
+05/04/2025, 9:00 am - Meera: anniversary breakfast?
+05/04/2025, 9:01 am - Aarav: making it now
+30/04/2026, 10:45 pm - Aarav: every day with you is the highlight
+30/04/2026, 10:46 pm - Meera: you're my person.`;
+
+    $("loadSampleLink").addEventListener("click", (e) => {
+      e.preventDefault();
+      clearError();
+      processChat(SAMPLE_CHAT);
+    });
+
+    function processChat(chatText) {
+      try {
+        const messages = parseChat(chatText);
+        if (messages.length === 0) {
+          showError("No messages were parsed. Are you sure this is a WhatsApp .txt export? The first line should look like: 15/01/2020, 9:42 pm - Name: hi");
+          return;
+        }
+        const analysis = analyze(messages);
+        state.analysis = analysis;
+        initApprovals(analysis);
+        renderResults(analysis);
+        hide("step-drop");
+        show("step-results");
+        $("inpTitle").value = analysis.participants.join(" & ");
+      } catch (err) {
+        showError("Something went wrong: " + err.message);
+        console.error(err);
+      }
+    }
+
+    /* APPROVAL DEFAULTS — non-sensitive items pre-approved */
+    function initApprovals(analysis) {
+      for (const q of analysis.quotes) state.approvals.quotes[q.id] = !q.sensitive;
+      for (const m of analysis.milestones) state.approvals.milestones[m.id] = !m.sensitive;
+      for (const m of analysis.motifs) state.approvals.motifs[m.id] = !m.sensitive;
+      for (const e of analysis.topEmojis) state.approvals.emojis[e.emoji] = true;
+    }
+
+    /* RENDERING */
+    function renderResults(analysis) {
+      // Stats
+      const sg = $("statsGrid");
+      sg.innerHTML = "";
+      const stats = [
+        ["totalMessages", "Messages"],
+        ["totalDaysActive", "Days active"],
+        ["longestStreakDays", "Longest streak"],
+        ["peakHour", "Peak hour"],
+        ["peakWeekday", "Peak day"],
+        ["mediaCount", "Media shared"],
+      ];
+      for (const [key, label] of stats) {
+        const value = analysis.stats[key];
+        const el = document.createElement("div");
+        el.className = "stat";
+        el.innerHTML = `<span class="num">${typeof value === "number" ? value.toLocaleString() : value}</span><span class="label">${label}</span>`;
+        sg.appendChild(el);
+      }
+
+      $("cntQuotes").textContent = `(${analysis.quotes.length})`;
+      $("cntMilestones").textContent = `(${analysis.milestones.length})`;
+      $("cntMotifs").textContent = `(${analysis.motifs.length})`;
+      $("cntEmojis").textContent = `(${analysis.topEmojis.length})`;
+
+      renderQuotes();
+      renderMilestones();
+      renderMotifs();
+      renderEmojis();
+      updateApprovalSummary();
+    }
+
+    function renderQuotes() {
+      const panel = $("panel-quotes");
+      panel.innerHTML = "";
+      for (const q of state.analysis.quotes) {
+        panel.appendChild(buildMoment("quotes", q, q.text, [
+          { kind: "quote", text: "Quote" },
+          ...(q.sensitive ? [{ kind: "lock", text: "🔒 Sensitive — review carefully" }] : []),
+          ...(q.redacted ? [{ kind: "redacted", text: "Auto-redacted" }] : []),
+        ], `${q.sender} · ${q.date}`));
+      }
+    }
+
+    function renderMilestones() {
+      const panel = $("panel-milestones");
+      panel.innerHTML = "";
+      for (const m of state.analysis.milestones) {
+        panel.appendChild(buildMoment("milestones", m, `${m.title}: "${m.sample}"`, [
+          { kind: "kind", text: "Milestone" },
+          ...(m.sensitive ? [{ kind: "lock", text: "🔒 Sensitive" }] : []),
+        ], `${m.sender} · ${m.date}`));
+      }
+    }
+
+    function renderMotifs() {
+      const panel = $("panel-motifs");
+      panel.innerHTML = "";
+      for (const m of state.analysis.motifs) {
+        panel.appendChild(buildMoment("motifs", m, `${m.label}: ${m.count} times. First sample: "${m.sample}"`, [
+          { kind: "kind", text: "Motif" },
+          ...(m.sensitive ? [{ kind: "lock", text: "🔒 Sensitive" }] : []),
+        ], `${m.firstSender} · first on ${m.firstDate}`));
+      }
+    }
+
+    function renderEmojis() {
+      const grid = $("emojiGrid");
+      grid.innerHTML = "";
+      for (const e of state.analysis.topEmojis) {
+        const el = document.createElement("label");
+        el.className = "emoji-item" + (state.approvals.emojis[e.emoji] ? " approved" : "");
+        el.innerHTML = `
+          <input type="checkbox" data-emoji="${e.emoji.replace(/"/g, "&quot;")}" ${state.approvals.emojis[e.emoji] ? "checked" : ""}>
+          <span class="big-emoji">${e.emoji}</span>
+          <span class="count">${e.count}×</span>
+        `;
+        el.querySelector("input").addEventListener("change", (ev) => {
+          state.approvals.emojis[e.emoji] = ev.target.checked;
+          el.classList.toggle("approved", ev.target.checked);
+          updateApprovalSummary();
+        });
+        grid.appendChild(el);
+      }
+    }
+
+    function buildMoment(bucket, item, text, badges, meta) {
+      const el = document.createElement("label");
+      const approved = state.approvals[bucket][item.id];
+      el.className = "moment" + (approved ? " approved" : "") + (item.sensitive ? " sensitive" : "");
+      const badgeHtml = badges.map(b => `<span class="badge ${b.kind}">${b.text}</span>`).join("");
+      el.innerHTML = `
+        <input type="checkbox" data-id="${item.id}" ${approved ? "checked" : ""}>
+        <div class="body">
+          <div class="text">${escapeHtml(text)}</div>
+          <div class="meta"><span class="sender">${escapeHtml(meta)}</span></div>
+          <div class="badges">${badgeHtml}</div>
+        </div>
+      `;
+      el.querySelector("input").addEventListener("change", (ev) => {
+        state.approvals[bucket][item.id] = ev.target.checked;
+        el.classList.toggle("approved", ev.target.checked);
+        updateApprovalSummary();
+      });
+      return el;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+    }
+
+    /* TAB SWITCHING */
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+        tab.classList.add("active");
+        $(`panel-${tab.dataset.panel}`).classList.add("active");
+      });
+    });
+
+    /* APPROVAL SUMMARY + BUTTON STATE */
+    function countApproved() {
+      const q = Object.values(state.approvals.quotes).filter(Boolean).length;
+      const ms = Object.values(state.approvals.milestones).filter(Boolean).length;
+      const mo = Object.values(state.approvals.motifs).filter(Boolean).length;
+      const em = Object.values(state.approvals.emojis).filter(Boolean).length;
+      return { quotes: q, milestones: ms, motifs: mo, emojis: em, total: q + ms + mo + em };
+    }
+    function updateApprovalSummary() {
+      const { total } = countApproved();
+      $("approvedTotal").textContent = total;
+      $("btnGenerate").disabled = total < 6;
+      const hint = $("needMoreHint");
+      if (total < 6) hint.textContent = `Pick at least ${6 - total} more for a usable manifest.`;
+      else hint.textContent = "Looks good! Generate when you're ready.";
+    }
+
+    /* GENERATE MANIFEST */
+    $("btnGenerate").addEventListener("click", () => {
+      const userInputs = {
+        title: $("inpTitle").value.trim(),
+        subtitle: $("inpSubtitle").value.trim(),
+        occasion: $("inpOccasion").value,
+        tone: $("inpTone").value,
+        theme: $("inpTheme").value,
+        tier: $("inpTier").value,
+        notes: $("inpNotes").value.trim(),
+        includeUserAgent: false,
+      };
+      const manifest = buildManifest(state.analysis, state.approvals, userInputs);
+
+      // Slug for filename
+      const slug = state.analysis.participants
+        .join("_").toLowerCase().replace(/[^a-z0-9_]/g, "");
+      const ts = new Date().toISOString().replace(/[-:.]/g, "").substring(0, 15);
+      const filename = `MW_manifest_${slug}_${ts}.json`;
+
+      const blob = new Blob([JSON.stringify(manifest, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      $("downloadedFilename").textContent = filename;
+      hide("step-results");
+      show("step-success");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    /* RESET */
+    $("resetLink").addEventListener("click", (e) => {
+      e.preventDefault();
+      state.analysis = null;
+      state.approvals = { quotes: {}, milestones: {}, motifs: {}, emojis: {} };
+      hide("step-success");
+      hide("step-results");
+      show("step-drop");
+      fileInput.value = "";
+    });
+  </script>
+</body>
+</html>

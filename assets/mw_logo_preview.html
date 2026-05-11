@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MemoryWrapped Logo Preview</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: sans-serif;
+      gap: 40px;
+      padding: 40px;
+    }
+    h1 { color: #C9A84C; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+    .previews {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .preview-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .preview-item span {
+      color: #666;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    /* Full size */
+    .full img { width: 400px; height: 400px; }
+
+    /* Instagram profile pic simulation */
+    .insta img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    /* Small icon size */
+    .small img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    /* Favicon size */
+    .favicon img {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>MemoryWrapped — Logo Preview</h1>
+  <div class="previews">
+    <div class="preview-item full">
+      <img src="mw_logo.svg" alt="MemoryWrapped Logo"/>
+      <span>400 × 400 — Full</span>
+    </div>
+    <div class="preview-item insta">
+      <img src="mw_logo.svg" alt="MemoryWrapped Logo"/>
+      <span>110px — Instagram</span>
+    </div>
+    <div class="preview-item small">
+      <img src="mw_logo.svg" alt="MemoryWrapped Logo"/>
+      <span>48px — Icon</span>
+    </div>
+    <div class="preview-item favicon">
+      <img src="mw_logo.svg" alt="MemoryWrapped Logo"/>
+      <span>32px — Favicon</span>
+    </div>
+  </div>
+</body>
+</html>
