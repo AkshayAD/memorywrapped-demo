@@ -156,6 +156,27 @@ button { font-family:var(--f-ui); }
 .faq-a { font-size:15px; color:var(--muted); line-height:1.8; max-height:0; overflow:hidden; transition:max-height .4s ease,padding-bottom .3s; }
 .faq-item.open .faq-a { max-height:300px; padding-bottom:24px; }
 
+/* ── SHOWCASE ─────────────────────────────────────────────────────────────── */
+.showcase-section { padding:100px 0 80px; }
+.showcase-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:56px; }
+.sc-item { background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--r); overflow:hidden; transition:transform .3s,border-color .3s; text-decoration:none; color:inherit; display:flex; flex-direction:column; cursor:pointer; }
+.sc-item:hover { transform:translateY(-6px); border-color:rgba(201,169,110,.38); }
+.sc-thumb { width:100%; aspect-ratio:16/10; object-fit:cover; object-position:center top; display:block; }
+.sc-body { padding:28px 26px; flex:1; display:flex; flex-direction:column; }
+.sc-tag { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+.sc-name { font-family:var(--f-display); font-size:26px; font-weight:400; color:var(--cream); margin-bottom:10px; }
+.sc-desc { font-size:14px; color:var(--muted); line-height:1.75; flex:1; margin-bottom:20px; }
+.sc-cta { font-size:13px; color:var(--gold); letter-spacing:.04em; }
+.sc-cta::after { content:' →'; }
+@media(max-width:900px){ .showcase-grid{grid-template-columns:1fr;gap:20px;} }
+.demo-row { border-top:1px solid rgba(201,169,110,.1); padding-top:44px; }
+.demo-row-hd { font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:rgba(201,169,110,.45); margin-bottom:20px; text-align:center; }
+.demo-chips { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+.demo-chip { background:rgba(201,169,110,.04); border:1px solid rgba(201,169,110,.15); border-radius:100px; padding:12px 26px; text-decoration:none; transition:all .2s; display:flex; flex-direction:column; align-items:center; gap:3px; }
+.demo-chip:hover { border-color:var(--gold); background:rgba(201,169,110,.09); }
+.dc-name { font-family:var(--f-display); font-size:17px; color:var(--cream); }
+.dc-type { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+
 /* ── FOOTER ───────────────────────────────────────────────────────────────── */
 .footer { border-top:1px solid rgba(201,169,110,.1); padding:64px 0 40px; }
 .footer-inner { display:flex; flex-direction:column; align-items:center; gap:20px; text-align:center; }
@@ -454,6 +475,67 @@ button { font-family:var(--f-ui); }
   <div class="container">
     <div class="gallery-dots" id="gallery-dots"></div>
     <p class="gallery-caption">Your names. Your moments. Your data.</p>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="showcase-section" id="showcase">
+  <div class="container">
+    <div class="section-hd fade-up">
+      <div class="eyebrow">Client work · Live examples</div>
+      <h2 class="section-h2">Every format. Every story.</h2>
+      <p class="section-sub">From instant Instagram carousels to full cinematic keepsakes — see what's been built.</p>
+    </div>
+    <div class="showcase-grid">
+      <a href="javascript:void(0)" onclick="openModal()" class="sc-item fade-up" style="transition-delay:.05s">
+        <img class="sc-thumb" src="assets/cards/slide_01_cover.jpg" alt="9 story cards">
+        <div class="sc-body">
+          <div class="sc-tag">Instant download · from ₹499</div>
+          <div class="sc-name">9 Story Cards</div>
+          <p class="sc-desc">Your first message, your numbers, your rituals — each chapter a beautiful 1080×1350 card. Ready for Instagram in under a minute.</p>
+          <span class="sc-cta">Order yours</span>
+        </div>
+      </a>
+      <a href="card_gallery.html" target="_blank" class="sc-item fade-up" style="transition-delay:.1s">
+        <img class="sc-thumb" src="assets/preview_card_gallery.jpg" alt="Card gallery">
+        <div class="sc-body">
+          <div class="sc-tag">20+ styles · all personas</div>
+          <div class="sc-name">The Card Gallery</div>
+          <p class="sc-desc">20 card designs across anniversary, wedding, and friendship stories. Browse the full collection and see exactly what yours could look like.</p>
+          <span class="sc-cta">Browse the full gallery</span>
+        </div>
+      </a>
+      <a href="samples/generated_outputs/aarav_meera_anniversary/site/" target="_blank" class="sc-item fade-up" style="transition-delay:.15s">
+        <img class="sc-thumb" src="assets/preview_aarav_meera_site.jpg" alt="Cinematic website demo">
+        <div class="sc-body">
+          <div class="sc-tag">Live demo · cinematic keepsake</div>
+          <div class="sc-name">Cinematic Website</div>
+          <p class="sc-desc">An interactive private site — your stats, chapters, moments, and rituals as a luxury digital experience. Built from a real WhatsApp export.</p>
+          <span class="sc-cta">Experience the demo</span>
+        </div>
+      </a>
+    </div>
+    <div class="demo-row fade-up">
+      <div class="demo-row-hd">More live demos</div>
+      <div class="demo-chips">
+        <a href="samples/generated_outputs/akshay_diu/site/" target="_blank" class="demo-chip">
+          <span class="dc-name">Akshay &amp; Diu</span>
+          <span class="dc-type">The original · real data</span>
+        </a>
+        <a href="samples/generated_outputs/kabir_anaya_wedding/site/" target="_blank" class="demo-chip">
+          <span class="dc-name">Kabir &amp; Anaya</span>
+          <span class="dc-type">Wedding memory</span>
+        </a>
+        <a href="samples/generated_outputs/riya_naina_friendship_birthday/site/" target="_blank" class="demo-chip">
+          <span class="dc-name">Riya &amp; Naina</span>
+          <span class="dc-type">Friendship birthday</span>
+        </a>
+        <a href="card_gallery.html" target="_blank" class="demo-chip">
+          <span class="dc-name">Full Gallery</span>
+          <span class="dc-type">All 60+ card styles</span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
