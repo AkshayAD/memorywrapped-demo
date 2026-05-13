@@ -24,8 +24,8 @@
   --gold-dark:   #a8824e;
   --rose:        #e8b4b8;
   --cream:       #f0ece4;
-  --muted:       rgba(240,236,228,.52);
-  --faint:       rgba(240,236,228,.22);
+  --muted:       rgba(240,236,228,.78);
+  --faint:       rgba(240,236,228,.52);
   --card-bg:     rgba(255,255,255,.03);
   --card-border: rgba(201,169,110,.18);
   --f-display:   'Cormorant Garamond', Georgia, serif;
@@ -214,6 +214,9 @@ button { font-family:var(--f-ui); }
 .pkg-card { border:1px solid var(--card-border); border-radius:12px; padding:22px 18px; cursor:pointer; transition:all .2s; position:relative; }
 .pkg-card:hover { border-color:rgba(201,169,110,.4); background:rgba(201,169,110,.03); }
 .pkg-card.sel { border-color:var(--gold); background:rgba(201,169,110,.07); }
+.pkg-badge { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:4px; }
+.tw-cloud { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; padding:20px; }
+.tw-chip { background:rgba(201,169,110,.12); border:1px solid rgba(201,169,110,.25); border-radius:20px; padding:8px 18px; font-size:18px; color:var(--cream); font-family:var(--f-display); }
 .pkg-chk { display:none; position:absolute; top:10px; right:10px; width:20px; height:20px; border-radius:50%; background:var(--gold); color:var(--bg); font-size:10px; font-weight:700; align-items:center; justify-content:center; }
 .pkg-card.sel .pkg-chk { display:flex; }
 .pkg-name { font-family:var(--f-display); font-size:19px; font-weight:400; color:var(--cream); margin-bottom:4px; }
@@ -421,7 +424,7 @@ button { font-family:var(--f-ui); }
       <h1 class="hero-h1">Your story,<br>told in<br><em>9 cards.</em></h1>
       <p class="hero-sub">Upload your WhatsApp chat. Get 9 personalized story cards — your first message, your numbers, your moments — generated instantly in your browser.</p>
       <div class="hero-ctas">
-        <button class="btn-primary" onclick="openModal()">Order Now — from ₹499</button>
+        <button class="btn-primary" onclick="openModal('free')">Try Free · 3 Watermarked Cards</button>
         <button class="btn-ghost" onclick="document.getElementById('examples').scrollIntoView({behavior:'smooth'})">See an example →</button>
       </div>
       <div class="hero-proof">
@@ -490,7 +493,7 @@ button { font-family:var(--f-ui); }
       <a href="javascript:void(0)" onclick="openModal()" class="sc-item fade-up" style="transition-delay:.05s">
         <img class="sc-thumb" src="assets/cards/slide_01_cover.jpg" alt="9 story cards">
         <div class="sc-body">
-          <div class="sc-tag">Instant download · from ₹499</div>
+          <div class="sc-tag">Free preview · Wrapped from ₹399</div>
           <div class="sc-name">9 Story Cards</div>
           <p class="sc-desc">Your first message, your numbers, your rituals — each chapter a beautiful 1080×1350 card. Ready for Instagram in under a minute.</p>
           <span class="sc-cta">Order yours</span>
@@ -578,52 +581,52 @@ button { font-family:var(--f-ui); }
     </div>
     <div class="pricing-grid">
       <div class="price-card fade-up" style="transition-delay:.05s">
-        <div class="price-name">Mini</div>
-        <div class="price-amt">₹499</div>
-        <p class="price-note">6 story cards · instant download</p>
+        <div class="price-name">Free Preview</div>
+        <div class="price-amt">₹0</div>
+        <p class="price-note">3 watermarked cards · no payment</p>
         <div class="price-div"></div>
         <ul class="price-feats">
-          <li>Cover card — your names &amp; stats</li>
-          <li>First message card</li>
-          <li>The Ask — your proposal moment</li>
-          <li>The Numbers — your chat stats</li>
-          <li>Photo card (your picture)</li>
-          <li>Closing card</li>
-          <li>6 JPGs · WhatsApp-ready · Instant ZIP</li>
+          <li>Cover card with your names</li>
+          <li>Your chat numbers</li>
+          <li>Daily rituals card</li>
+          <li>Watermarked "MemoryWrapped"</li>
+          <li>Instant browser download</li>
+          <li>Share on Instagram Stories</li>
+          <li>Chat stays on your device</li>
         </ul>
-        <button class="btn-price ghost" onclick="openModal('mini')">Get Mini</button>
+        <button class="btn-price ghost" onclick="openModal('free')">Try Free</button>
       </div>
       <div class="price-card featured fade-up" style="transition-delay:.15s">
         <div class="price-badge-tag">Most Popular</div>
-        <div class="price-name">Anniversary Wrapped</div>
-        <div class="price-amt">₹999</div>
-        <p class="price-note">All 9 cards · Instagram carousel</p>
+        <div class="price-name">Wrapped</div>
+        <div class="price-amt">₹399</div>
+        <p class="price-note">All 9 cards · no watermark</p>
         <div class="price-div"></div>
         <ul class="price-feats">
-          <li>All 6 Mini cards</li>
-          <li>Daily Rituals — streaks &amp; peak hour</li>
-          <li>Journey Timeline — your milestones</li>
-          <li>Morning Messages card</li>
+          <li>Cover · First message · The Ask</li>
+          <li>Chat stats · Daily Rituals</li>
+          <li>Photo card (your picture)</li>
+          <li>Journey Timeline · Morning messages</li>
+          <li>Closing card</li>
           <li>9 JPGs · 1080×1350 · Instagram-ready</li>
-          <li>Instant ZIP download</li>
-          <li>Post as carousel · share on stories</li>
+          <li>Instant ZIP · No watermark</li>
         </ul>
         <button class="btn-price primary" onclick="openModal('wrapped')">Get Wrapped</button>
       </div>
       <div class="price-card fade-up" style="transition-delay:.25s">
-        <div class="price-name">Keepsake</div>
+        <div class="price-name">Wrapped + Site</div>
         <div class="price-amt">₹1,999</div>
-        <p class="price-note">9 cards + high-res + poster</p>
+        <p class="price-note">9 cards + cinematic website</p>
         <div class="price-div"></div>
         <ul class="price-feats">
-          <li>All 9 Anniversary Wrapped cards</li>
-          <li>2× high-resolution output</li>
-          <li>Bonus stats poster card</li>
-          <li>10 JPGs total · print-ready quality</li>
-          <li>Instant ZIP download</li>
-          <li>Best for framing &amp; gifting</li>
+          <li>All 9 Wrapped cards</li>
+          <li>Private cinematic website</li>
+          <li>akshaydivyanka.in/memorywrapped/YourNames</li>
+          <li>Hosted permanently, shareable link</li>
+          <li>Delivered within 48 hours</li>
+          <li>Best for anniversaries &amp; weddings</li>
         </ul>
-        <button class="btn-price ghost" onclick="openModal('keepsake')">Get Keepsake</button>
+        <button class="btn-price ghost" onclick="openModal('site')">Get Wrapped+Site</button>
       </div>
     </div>
   </div>
@@ -695,57 +698,15 @@ button { font-family:var(--f-ui); }
     <div class="ms-dot"></div>
     <div class="ms-dot"></div>
     <div class="ms-dot"></div>
+    <div class="ms-dot"></div>
   </div>
   <div class="modal-scroll">
     <div class="modal-body">
 
-      <!-- Step 1: Package + Pay -->
+      <!-- Step 1: Upload Chat -->
       <div class="modal-step active" id="step-1">
         <div class="step-hd">
-          <div class="eyebrow">Step 1 of 4</div>
-          <h2>Choose &amp; pay</h2>
-          <p>Select a package, pay via UPI, then enter your transaction reference to continue.</p>
-        </div>
-        <div class="pkg-grid" id="pkg-grid">
-          <div class="pkg-card" onclick="selectPkg('mini',this)">
-            <div class="pkg-chk">✓</div>
-            <div class="pkg-name">Mini</div>
-            <div class="pkg-price">₹499</div>
-            <ul class="pkg-feats"><li>6 story cards</li><li>WhatsApp-ready JPGs</li><li>Instant ZIP download</li></ul>
-          </div>
-          <div class="pkg-card sel" onclick="selectPkg('wrapped',this)">
-            <div class="pkg-chk">✓</div>
-            <div class="pkg-name">Anniversary Wrapped</div>
-            <div class="pkg-price">₹999</div>
-            <ul class="pkg-feats"><li>All 9 cards</li><li>Instagram carousel-ready</li><li>Instant ZIP download</li></ul>
-          </div>
-          <div class="pkg-card" onclick="selectPkg('keepsake',this)">
-            <div class="pkg-chk">✓</div>
-            <div class="pkg-name">Keepsake</div>
-            <div class="pkg-price">₹1,999</div>
-            <ul class="pkg-feats"><li>9 cards + bonus poster</li><li>High-res 2× quality</li><li>Instant ZIP download</li></ul>
-          </div>
-        </div>
-        <div class="pay-box show" id="pay-box">
-          <div class="pay-inner">
-            <div class="pay-qr-wrap"><div id="qr-canvas"></div></div>
-            <div class="pay-details">
-              <div class="pay-amt" id="pay-amt-disp">₹999</div>
-              <div class="pay-upi-id">UPI: 9962740490@upi</div>
-              <div class="pay-apps">
-                <span class="pay-app">GPay</span><span class="pay-app">PhonePe</span><span class="pay-app">Paytm</span><span class="pay-app">BHIM</span>
-              </div>
-              <label class="utr-lbl">Transaction reference / UTR number</label>
-              <input type="text" class="utr-input" id="utr-input" placeholder="e.g. 426819200374" oninput="onUtrInput()">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 2: Upload Chat -->
-      <div class="modal-step" id="step-2">
-        <div class="step-hd">
-          <div class="eyebrow">Step 2 of 4</div>
+          <div class="eyebrow">Step 1 of 5</div>
           <h2>Upload your chat</h2>
           <p>Export your WhatsApp chat as a .txt file and drop it below. It never leaves your browser.</p>
         </div>
@@ -768,10 +729,10 @@ button { font-family:var(--f-ui); }
         </div>
       </div>
 
-      <!-- Step 3: Personalize -->
-      <div class="modal-step" id="step-3">
+      <!-- Step 2: Personalize -->
+      <div class="modal-step" id="step-2">
         <div class="step-hd">
-          <div class="eyebrow">Step 3 of 4</div>
+          <div class="eyebrow">Step 2 of 5</div>
           <h2>Your story details</h2>
           <p>The more you share, the more personal the cards.</p>
         </div>
@@ -796,12 +757,81 @@ button { font-family:var(--f-ui); }
         <div class="form-g"><label>A special note <span class="opt">optional · shown on journey card</span></label><textarea class="f-ta" id="f-note" placeholder="Your anniversary trip, proposal story, a favourite memory…" rows="3" maxlength="220"></textarea></div>
       </div>
 
-      <!-- Step 4: Generate -->
+      <!-- Step 3: Choose Package -->
+      <div class="modal-step" id="step-3">
+        <div class="step-hd">
+          <div class="eyebrow">Step 3 of 5</div>
+          <h2>Choose your package</h2>
+          <p>Free gets you 3 watermarked cards instantly. Upgrade for all 9 without watermark.</p>
+        </div>
+        <div class="pkg-grid" id="pkg-grid">
+          <div class="pkg-card" onclick="selectPkg('free',this)">
+            <div class="pkg-chk">✓</div>
+            <div class="pkg-name">Free Preview</div>
+            <div class="pkg-price">₹0</div>
+            <ul class="pkg-feats"><li>3 watermarked cards</li><li>Instant download</li><li>No payment needed</li></ul>
+          </div>
+          <div class="pkg-card sel" onclick="selectPkg('wrapped',this)">
+            <div class="pkg-chk">✓</div>
+            <div class="pkg-badge">Most Popular</div>
+            <div class="pkg-name">Wrapped</div>
+            <div class="pkg-price">₹399</div>
+            <ul class="pkg-feats"><li>All 9 personalized cards</li><li>No watermark</li><li>Instagram carousel-ready ZIP</li></ul>
+          </div>
+          <div class="pkg-card" onclick="selectPkg('site',this)">
+            <div class="pkg-chk">✓</div>
+            <div class="pkg-name">Wrapped + Site</div>
+            <div class="pkg-price">₹1,999</div>
+            <ul class="pkg-feats"><li>All 9 cards + cinematic website</li><li>Private shareable URL</li><li>Delivered within 48h</li></ul>
+          </div>
+        </div>
+        <div id="pkg-free-note" style="text-align:center;margin-top:16px;font-size:13px;color:var(--faint);display:none">Free cards will have a small "MemoryWrapped" watermark in the corner.</div>
+      </div>
+
+      <!-- Step 4: Pay + Verify (hidden for free tier) -->
       <div class="modal-step" id="step-4">
         <div class="step-hd">
-          <div class="eyebrow">Step 4 of 4</div>
+          <div class="eyebrow">Step 4 of 5</div>
+          <h2>Pay &amp; verify</h2>
+          <p>Pay via UPI, enter your 12-digit UTR, then get a code on your email to continue.</p>
+        </div>
+        <div class="pay-box show" id="pay-box">
+          <div class="pay-inner">
+            <div class="pay-qr-wrap"><div id="qr-canvas"></div></div>
+            <div class="pay-details">
+              <div class="pay-amt" id="pay-amt-disp">₹399</div>
+              <div class="pay-upi-id">UPI: 9962740490@upi</div>
+              <div class="pay-apps">
+                <span class="pay-app">GPay</span><span class="pay-app">PhonePe</span><span class="pay-app">Paytm</span><span class="pay-app">BHIM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-g" style="margin-top:24px">
+          <label>Your email <span style="color:var(--rose)">*</span></label>
+          <input type="email" class="f-input" id="f-email" placeholder="you@gmail.com" oninput="validateCurrentStep()">
+        </div>
+        <div class="form-g">
+          <label>12-digit UTR / transaction reference <span style="color:var(--rose)">*</span></label>
+          <input type="text" class="utr-input" id="utr-input" placeholder="e.g. 426819200374" maxlength="12" oninput="onUtrInput()" inputmode="numeric">
+          <div id="utr-hint" style="font-size:12px;color:var(--faint);margin-top:6px">Find this in your UPI app under transaction details</div>
+        </div>
+        <div id="verify-section" style="display:none;margin-top:20px">
+          <button class="btn-ghost" id="btn-send-code" onclick="sendVerificationCode()" style="width:100%;margin-bottom:16px">Send verification code to my email →</button>
+          <div class="form-g" id="code-input-wrap" style="display:none">
+            <label>Verification code</label>
+            <input type="text" class="f-input" id="f-code" placeholder="6-character code" maxlength="6" oninput="onCodeInput()">
+            <div id="code-status" style="font-size:13px;margin-top:6px;color:var(--faint)"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: Generate -->
+      <div class="modal-step" id="step-5">
+        <div class="step-hd">
+          <div class="eyebrow">Step 5 of 5</div>
           <h2>Generate your cards</h2>
-          <p>Everything renders in your browser. Takes about 30 seconds.</p>
+          <p id="gen-desc">Everything renders in your browser. Takes about 30 seconds.</p>
         </div>
         <div class="gen-summary" id="gen-summary">
           <h3 id="gen-names">Your cards</h3>
@@ -820,6 +850,7 @@ button { font-family:var(--f-ui); }
           <button class="btn-dl" id="btn-dl">↓ Download ZIP</button>
           <p class="dl-note">All cards packed as JPEGs.</p>
           <p style="margin-top:12px;font-size:13px;color:var(--faint)">@getmemorywrapped · Tag us when you post ✦</p>
+          <div id="site-note" style="display:none;margin-top:16px;padding:16px;border:1px solid rgba(201,169,110,.2);border-radius:8px;font-size:14px;color:var(--muted)">Your cinematic website will be delivered to <strong id="site-email"></strong> within 48 hours.</div>
         </div>
       </div>
 
@@ -846,24 +877,28 @@ button { font-family:var(--f-ui); }
 
 <script>
 // ── STATE ─────────────────────────────────────────────────────────────────────
-let currentStep=1, selectedPkg='wrapped', utrVal='', manifest=null, photoURL=null, generatedBlobs=[];
-const PKG_PRICES={mini:499,wrapped:999,keepsake:1999};
-const PKG_LABELS={mini:'Mini — ₹499',wrapped:'Anniversary Wrapped — ₹999',keepsake:'Keepsake — ₹1,999'};
-const PKG_CARDS ={mini:6,wrapped:9,keepsake:9};
-const CARD_NAMES=['Cover','How_It_Started','The_Ask','The_Numbers','Daily_Rituals','Photo','The_Journey','Still_Going','Share_Yours'];
+let currentStep=1, selectedPkg='wrapped', utrVal='', verifiedCode=false, manifest=null, photoURL=null, generatedBlobs=[];
+const PKG_PRICES={free:0,wrapped:399,site:1999};
+const PKG_LABELS={free:'Free Preview',wrapped:'Wrapped — ₹399',site:'Wrapped + Site — ₹1,999'};
+const PKG_CARDS ={free:3,wrapped:9,site:9};
+const CARD_NAMES=['Cover','How_It_Started','The_Numbers','Daily_Rituals','Photo','The_Journey','Still_Going','Language','Share_Yours'];
 const GAS='https://script.google.com/macros/s/AKfycbw9D2jRZEm4p2z15OUquRrGdUppop-K1N1VrP85AcCCNw3_8F61agjJFI8H5hueX-Eq/exec';
+const UTR_RE=/^\d{12}$/;
 
 // ── MODAL ─────────────────────────────────────────────────────────────────────
 function openModal(pkg){
-  if(pkg) selectPkg(pkg, document.querySelector(`.pkg-card:nth-child(${pkg==='mini'?1:pkg==='wrapped'?2:3})`));
+  const pkgToUse=pkg||'wrapped';
   document.getElementById('order-modal').classList.add('open');
   document.body.style.overflow='hidden';
-  goToStep(1); renderQR();
+  goToStep(1);
+  const idx={free:0,wrapped:1,site:2}[pkgToUse]??1;
+  selectPkg(pkgToUse, document.querySelectorAll('.pkg-card')[idx]);
 }
 function closeModal(){ document.getElementById('order-modal').classList.remove('open'); document.body.style.overflow=''; }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
 
 // ── STEPPER ───────────────────────────────────────────────────────────────────
+const TOTAL_STEPS=5;
 function goToStep(n){
   currentStep=n;
   document.querySelectorAll('.modal-step').forEach((s,i)=>s.classList.toggle('active',i+1===n));
@@ -872,38 +907,84 @@ function goToStep(n){
   });
   document.getElementById('btn-back').style.visibility=n===1?'hidden':'visible';
   const next=document.getElementById('btn-next');
-  next.style.display=n===4?'none':'';
+  next.style.display=n===TOTAL_STEPS?'none':'';
   validateCurrentStep();
   document.querySelector('.modal-scroll').scrollTop=0;
-  if(n===4) fillGenSummary();
+  if(n===4) renderQR();
+  if(n===TOTAL_STEPS) fillGenSummary();
 }
-function nextStep(){ if(currentStep<4) goToStep(currentStep+1); }
-function prevStep(){ if(currentStep>1) goToStep(currentStep-1); }
+function nextStep(){
+  if(currentStep===3 && selectedPkg==='free'){ goToStep(5); return; }
+  if(currentStep<TOTAL_STEPS) goToStep(currentStep+1);
+}
+function prevStep(){
+  if(currentStep===5 && selectedPkg==='free'){ goToStep(3); return; }
+  if(currentStep>1) goToStep(currentStep-1);
+}
 
 function validateCurrentStep(){
   const btn=document.getElementById('btn-next');
-  if(currentStep===1) btn.disabled=!utrVal.trim();
-  else if(currentStep===2) btn.disabled=!manifest;
-  else if(currentStep===3) btn.disabled=!(v('f-name1')&&v('f-name2'));
+  if(currentStep===1) btn.disabled=!manifest;
+  else if(currentStep===2) btn.disabled=!(v('f-name1')&&v('f-name2'));
+  else if(currentStep===3) btn.disabled=false;
+  else if(currentStep===4) btn.disabled=!(UTR_RE.test(v('utr-input')) && v('f-email') && verifiedCode);
   else btn.disabled=true;
 }
-const v=id=>document.getElementById(id).value.trim();
+const v=id=>document.getElementById(id)?.value?.trim()||'';
 
 // ── PACKAGE ───────────────────────────────────────────────────────────────────
 function selectPkg(pkg,el){
   selectedPkg=pkg;
   document.querySelectorAll('.pkg-card').forEach(c=>c.classList.remove('sel'));
   if(el) el.classList.add('sel');
-  document.getElementById('pay-amt-disp').textContent='₹'+PKG_PRICES[pkg].toLocaleString('en-IN');
-  renderQR();
+  document.getElementById('pkg-free-note').style.display=pkg==='free'?'block':'none';
+  validateCurrentStep();
 }
+
 function renderQR(){
   const el=document.getElementById('qr-canvas'); el.innerHTML='';
   if(typeof QRCode==='undefined'){setTimeout(renderQR,600);return;}
   const amt=PKG_PRICES[selectedPkg];
+  document.getElementById('pay-amt-disp').textContent='₹'+amt.toLocaleString('en-IN');
   new QRCode(el,{text:`upi://pay?pa=9962740490@upi&pn=MemoryWrapped&am=${amt}&cu=INR&tn=MemoryWrapped`,width:160,height:160,colorDark:'#1a1a2e',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
 }
-function onUtrInput(){ utrVal=v('utr-input'); validateCurrentStep(); }
+
+function onUtrInput(){
+  utrVal=v('utr-input');
+  verifiedCode=false;
+  const valid=UTR_RE.test(utrVal)&&v('f-email');
+  document.getElementById('verify-section').style.display=valid?'block':'none';
+  document.getElementById('utr-hint').textContent=utrVal&&!UTR_RE.test(utrVal)?'UTR must be exactly 12 digits':'Find this in your UPI app under transaction details';
+  validateCurrentStep();
+}
+
+async function sendVerificationCode(){
+  const btn=document.getElementById('btn-send-code');
+  btn.disabled=true; btn.textContent='Sending…';
+  try{
+    const r=await fetch(GAS,{method:'POST',body:JSON.stringify({action:'verify',utr:v('utr-input'),email:v('f-email'),pkg:selectedPkg})});
+    const d=await r.json();
+    if(d.ok){
+      document.getElementById('code-input-wrap').style.display='block';
+      document.getElementById('code-status').textContent='Code sent! Check your email (also spam folder).';
+      btn.textContent='Resend code';
+    } else { btn.textContent='Send code (try again)'; }
+  } catch(e){ btn.textContent='Send code (try again)'; }
+  btn.disabled=false;
+}
+
+async function onCodeInput(){
+  const code=v('f-code');
+  if(code.length<6) return;
+  const st=document.getElementById('code-status');
+  st.textContent='Verifying…';
+  try{
+    const r=await fetch(GAS,{method:'POST',body:JSON.stringify({action:'confirm',utr:v('utr-input'),email:v('f-email'),code})});
+    const d=await r.json();
+    if(d.ok){ verifiedCode=true; st.textContent='✓ Verified! Click Continue.'; st.style.color='#6ee396'; validateCurrentStep(); }
+    else { st.textContent='Invalid code. Try again.'; st.style.color='#e8b4b8'; }
+  } catch(e){ st.textContent='Verification failed. Try again.'; }
+}
 
 // ── CHAT FILE ─────────────────────────────────────────────────────────────────
 const dz=document.getElementById('drop-zone');
@@ -932,6 +1013,7 @@ async function handleChatFile(file){
     }
   } catch(err){ st.innerHTML=`<span class="err">Error: ${err.message}</span>`; }
 }
+
 
 // ── PHOTO FILE ────────────────────────────────────────────────────────────────
 function handlePhotoFile(file){
@@ -963,6 +1045,11 @@ function fillGenSummary(){
     const to=manifest.dateRange.to?manifest.dateRange.to.slice(0,7):'';
     document.getElementById('gen-chat-info').textContent=`${msgs} messages · ${fr} → ${to}`;
   }
+  const isFree=selectedPkg==='free';
+  document.getElementById('gen-desc').textContent=isFree?'3 watermarked cards will generate instantly.':'Everything renders in your browser. Takes about 30 seconds.';
+  const siteNote=document.getElementById('site-note');
+  if(selectedPkg==='site'){ siteNote.style.display='block'; document.getElementById('site-email').textContent=v('f-email'); }
+  else siteNote.style.display='none';
 }
 
 // ── CARD GENERATION ───────────────────────────────────────────────────────────
@@ -971,7 +1058,7 @@ async function startGeneration(){
   document.getElementById('btn-generate').disabled=true;
   const vars=buildVars();
   const n=PKG_CARDS[selectedPkg];
-  const scale=selectedPkg==='keepsake'?2:1;
+  const isFree=selectedPkg==='free';
   fillCardStage(vars);
 
   const stage=document.getElementById('card-stage');
@@ -988,7 +1075,8 @@ async function startGeneration(){
     pf.style.width=((i-1)/n*85)+'%';
     const el=document.getElementById('cs'+i);
     try{
-      const canvas=await html2canvas(el,{width:1080,height:1350,scale,backgroundColor:'#07070d',useCORS:true,allowTaint:true,logging:false});
+      const canvas=await html2canvas(el,{width:1080,height:1350,scale:1,backgroundColor:'#07070d',useCORS:true,allowTaint:true,logging:false});
+      if(isFree) applyWatermark(canvas);
       const blob=await canvasBlob(canvas,'image/jpeg',0.93);
       generatedBlobs.push({name:String(i).padStart(2,'0')+'_'+CARD_NAMES[i-1]+'.jpg',blob});
       const url=URL.createObjectURL(blob);
@@ -998,11 +1086,20 @@ async function startGeneration(){
     } catch(err){ console.warn('Card '+i+' error:',err); }
   }
   stage.style.cssText='position:fixed;left:-1200px;top:0;width:1080px;z-index:9999;pointer-events:none;';
-  pf.style.width='100%'; pl.textContent='✓ All cards generated!';
-  const dl=document.getElementById('dl-wrap');
+  pf.style.width='100%'; pl.textContent=isFree?'✓ 3 preview cards ready! Upgrade for all 9.':'✓ All cards generated!';
   document.getElementById('btn-dl').onclick=downloadZip;
-  dl.classList.add('show');
+  document.getElementById('dl-wrap').classList.add('show');
   logOrder();
+}
+
+function applyWatermark(canvas){
+  const ctx=canvas.getContext('2d');
+  ctx.save();
+  ctx.font='bold 28px Inter, sans-serif';
+  ctx.fillStyle='rgba(255,255,255,0.35)';
+  ctx.textAlign='right';
+  ctx.fillText('MemoryWrapped', canvas.width-32, canvas.height-32);
+  ctx.restore();
 }
 
 async function downloadZip(){
@@ -1061,13 +1158,17 @@ function buildVars(){
 
   const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
+  const allMotifs=m.motifs||[];
+  const motifRows=allMotifs.slice(0,5).map(mo=>`<div class="s5-rw"><div class="r-lb">${esc(mo.label)}</div><div class="r-vl">${fmtNum(mo.count)}</div></div>`).join('');
+  const topWords=(m.topWords||[]).slice(0,6).map(w=>`<span class="tw-chip">${esc(w)}</span>`).join('');
+
   return {
     P1:n1, P2:n2, NAMES:n1+' & '+n2,
     DR:fmtMon(dr.from)+' → '+fmtMon(dr.to),
     REL:rel, RS:relStart, RE:relEnd,
     MC:fmtNum(st.totalMessages), WC:fmtK(st.totalWords),
     MED:fmtNum(st.mediaCount), TE:te.emoji, TEC:fmtNum(te.count),
-    LC:mc('love'), GMC:mc('morning'),
+    LC:mc('love'), GMC:mc('morning'), GNC:mc('night'),
     STR:fmtNum(st.longestStreakDays), PH:fmtHr(st.peakHour||'22:00'),
     OCC:occ,
     FD:fmtDate(firstDate), FT:esc(firstMs.sample||''),
@@ -1075,6 +1176,7 @@ function buildVars(){
     LD:last?fmtDate(last.date):fmtDate(dr.to), LT:esc(last?(last.text||'').slice(0,200):''),
     PHOTO:photoURL||'', PCAP:photoCap,
     NICK:nick, LOC:loc, PDATE:dat||fmtMon(dr.to),
+    MOTIF_ROWS:motifRows, TOP_WORDS:topWords,
   };
 }
 
@@ -1128,9 +1230,7 @@ function fillCardStage(V){
     <div class="s5-hd">Some things<br>never missed.</div>
     <div class="s5-sb">Every. Single. Day.</div>
     <div class="s5-rl">
-      <div class="s5-rw"><div class="r-lb">Good mornings sent</div><div class="r-vl">${V.GMC}</div></div>
-      <div class="s5-rw"><div class="r-lb">Days without a break</div><div class="r-vl">${V.STR}</div></div>
-      <div class="s5-rw"><div class="r-lb">Peak hour</div><div class="r-vl gld">${V.PH}</div></div>
+      ${V.MOTIF_ROWS||`<div class="s5-rw"><div class="r-lb">Good mornings sent</div><div class="r-vl">${V.GMC}</div></div><div class="s5-rw"><div class="r-lb">Days without a break</div><div class="r-vl">${V.STR}</div></div><div class="s5-rw"><div class="r-lb">Peak hour</div><div class="r-vl gld">${V.PH}</div></div>`}
     </div>
   `+F;
 
@@ -1156,11 +1256,11 @@ function fillCardStage(V){
   `+F;
 
   $('cs8').innerHTML=G+`
-    <div class="eyb">Still going · ${V.LD}</div>
-    <div class="s8-dt">${V.OCC} in. Nothing changed.</div>
-    <div class="s8-ml">A morning message</div>
-    <div class="s8-bb"><div class="s8-bt">"${V.LT||'Good morning '+V.NICK+' 🌅'}"</div></div>
-    <div class="s8-nt">${V.GMC} good mornings sent.<br>Every single one meant.</div>
+    <div class="eyb">Your language</div>
+    <div class="s8-dt">Words that kept coming back.</div>
+    <div class="s8-ml">Your most-used words</div>
+    <div class="s8-bb tw-cloud">${V.TOP_WORDS||'<span class="tw-chip">love</span><span class="tw-chip">always</span>'}</div>
+    <div class="s8-nt">${V.TEC} times ${V.TE} sent · Good nights: ${V.GNC}</div>
   `+F;
 
   $('cs9').innerHTML=G+C+`
@@ -1176,11 +1276,27 @@ function fillCardStage(V){
 // ── GAS LOGGING ───────────────────────────────────────────────────────────────
 function logOrder(){
   try{
-    fetch(GAS,{method:'POST',body:JSON.stringify({customer:{name1:v('f-name1'),name2:v('f-name2'),email:'',phone:'',package:selectedPkg,utr:utrVal},custom:{relationship:v('f-rel'),photoLocation:v('f-loc'),photoDate:v('f-date'),nickname:v('f-nick'),specialNote:v('f-note')},manifest,photo:null})}).catch(()=>{});
+    fetch(GAS,{method:'POST',body:JSON.stringify({action:'log',customer:{name1:v('f-name1'),name2:v('f-name2'),email:v('f-email'),package:selectedPkg,utr:v('utr-input')},custom:{relationship:v('f-rel'),photoLocation:v('f-loc'),photoDate:v('f-date'),nickname:v('f-nick'),specialNote:v('f-note')},manifest,photo:null})}).catch(()=>{});
   }catch(e){}
 }
 
 // ── WHATSAPP PARSER ───────────────────────────────────────────────────────────
+const MOTIF_SPECS=[
+  {label:'Good mornings',re:/\bgood morning\b/i},
+  {label:'Good nights',re:/\bgood night\b/i},
+  {label:'Love notes',re:/\bi love (?:you|u)\b|\blove (?:you|u)\b|\biloveyou\b/i},
+  {label:'Missing each other',re:/\bmiss(?:ing)?\b/i},
+  {label:'Sorry & repair',re:/\bsorry\b|\bforgive\b/i},
+  {label:'Food memories',re:/\bfood\b|\bbiryani\b|\bnoodles?\b|\blunch\b|\bdinner\b/i},
+  {label:'Plans together',re:/\bmeet\b|\bcome\b|\bmovie\b|\bgo out\b/i},
+];
+const MILESTONE_PATS=[
+  {title:'First love note',re:/\bi love (?:you|u)\b|\biloveyou\b/i},
+  {title:'First food memory',re:/\bnoodles?\b|\bbiryani\b|\bdinner\b|\blunch\b/i},
+  {title:'First plan together',re:/\bmeet\b|\bplans?\b|\bgo out\b/i},
+  {title:'Wedding language',re:/\bshaadi\b|\bwedding\b|\bmarriage\b|\bmarried\b/i},
+];
+
 async function runAnalyzer(text){
   const lines=text.split('\n');
   const msgRe=/^[\[‎]?(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})[,\s]+(\d{1,2}):(\d{2})(?::(\d{2}))?(?:\s*(AM|PM))?\]?[\s\-–]+([^:]+):\s(.+)/i;
@@ -1206,11 +1322,33 @@ async function runAnalyzer(text){
   let streak=0,max=0,prev=null;
   [...ds].sort().forEach(d=>{if(prev){const diff=(new Date(d)-new Date(prev))/86400000;streak=diff===1?streak+1:1;}else streak=1;max=Math.max(max,streak);prev=d;});
   const topEmojis=Object.entries(emojiCounts).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([emoji,count])=>({emoji,count}));
-  let love=0,gm=0;msgs.forEach(m=>{if(/i love you|love you/i.test(m.text))love++;if(/good morning/i.test(m.text))gm++;});
-  const fm=msgs[0],fd=new Date(from);
+
+  const motifs=MOTIF_SPECS.map(s=>({label:s.label,count:msgs.filter(m=>s.re.test(m.text)).length})).filter(m=>m.count>0);
+
+  const fd=new Date(from);
   const early=msgs.filter(m=>{try{return(new Date(m.date)-fd)/86400000<=45&&m.text.length>20&&!/omitted/i.test(m.text);}catch(e){return false;}}).slice(0,30);
-  const moments=early.filter(m=>m.text.length>30).map((m,i)=>({id:'m'+(i+1),text:m.text.slice(0,300),sender:m.sender,date:m.date})).slice(0,40);
-  return{schema:'memorywrapped-manifest@1',participants:parts,dateRange:{from,to},stats:{totalMessages:msgs.length,totalWords,totalDaysActive:ds.size,longestStreakDays:max,peakHour:`${String(ph).padStart(2,'0')}:00`,mediaCount},moments,milestones:fm?[{title:'First message',date:fm.date,sample:fm.text.slice(0,100)}]:[],motifs:[{label:'Good mornings',count:gm},{label:'Love notes',count:love}],topEmojis};
+  const moments=early.filter(m=>m.text.length>30).map((m,i)=>({id:'m'+(i+1),text:m.text.slice(0,300),sender:m.sender,date:m.date}));
+
+  const fm=msgs[0];
+  const seen=new Set();
+  const milestones=fm?[{title:'First message',date:fm.date,sample:fm.text.slice(0,100)}]:[];
+  for(const pat of MILESTONE_PATS){
+    const hit=msgs.find(m=>pat.re.test(m.text));
+    if(hit&&!seen.has(pat.title)){seen.add(pat.title);milestones.push({title:pat.title,date:hit.date,sample:hit.text.slice(0,120)});}
+  }
+
+  const perSender={};
+  parts.forEach(p=>{
+    const pm=msgs.filter(m=>m.sender===p);
+    perSender[p]={messages:pm.length,words:pm.reduce((a,m)=>a+m.text.split(/\s+/).length,0)};
+  });
+
+  const wordCounts={};
+  const STOP=new Set(['a','an','the','is','it','i','you','me','my','your','and','but','so','to','of','in','on','at','be','was','are','or','we','he','she','do','did','got','get','ok','okay','yes','no','not','up','if','go','can','will','this','that','for','with','have','had','all','just','now','what','when','where','how','who','any','there']);
+  msgs.forEach(m=>{m.text.toLowerCase().match(/[a-z]{3,}/g)?.forEach(w=>{if(!STOP.has(w))wordCounts[w]=(wordCounts[w]||0)+1;});});
+  const topWords=Object.entries(wordCounts).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([w,c])=>w);
+
+  return{schema:'memorywrapped-manifest@1',participants:parts,dateRange:{from,to},stats:{totalMessages:msgs.length,totalWords,totalDaysActive:ds.size,longestStreakDays:max,peakHour:`${String(ph).padStart(2,'0')}:00`,mediaCount,perSender},moments,milestones,motifs,topEmojis,topWords};
 }
 function parseWADate(m){try{let d=parseInt(m[1]),mo=parseInt(m[2]),y=parseInt(m[3]),h=parseInt(m[4]);if(y<100)y+=2000;if(d>12){}else if(mo>12){[d,mo]=[mo,d];}const ap=m[7];if(ap){if(ap.toUpperCase()==='PM'&&h<12)h+=12;if(ap.toUpperCase()==='AM'&&h===12)h=0;}return`${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;}catch(e){return'';}}
 
