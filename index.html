@@ -485,57 +485,57 @@ button { font-family:var(--f-ui); }
 <section class="showcase-section" id="showcase">
   <div class="container">
     <div class="section-hd fade-up">
-      <div class="eyebrow">Client work · Live examples</div>
-      <h2 class="section-h2">Every format. Every story.</h2>
-      <p class="section-sub">From instant Instagram carousels to full cinematic keepsakes — see what's been built.</p>
+      <div class="eyebrow">What you get · Real deliverables</div>
+      <h2 class="section-h2">See exactly what we make.</h2>
+      <p class="section-sub">Every sample below is a real MemoryWrapped deliverable — this is what you receive.</p>
     </div>
     <div class="showcase-grid">
-      <a href="javascript:void(0)" onclick="openModal()" class="sc-item fade-up" style="transition-delay:.05s">
+      <a href="javascript:void(0)" onclick="openModal('free')" class="sc-item fade-up" style="transition-delay:.05s">
         <img class="sc-thumb" src="assets/cards/slide_01_cover.jpg" alt="9 story cards">
         <div class="sc-body">
-          <div class="sc-tag">Free preview · Wrapped from ₹399</div>
-          <div class="sc-name">9 Story Cards</div>
-          <p class="sc-desc">Your first message, your numbers, your rituals — each chapter a beautiful 1080×1350 card. Ready for Instagram in under a minute.</p>
-          <span class="sc-cta">Order yours</span>
+          <div class="sc-tag">Wrapped — ₹399 · 9 cards delivered to your email</div>
+          <div class="sc-name">The 9 Story Cards</div>
+          <p class="sc-desc">Your first message, your numbers, your rituals — each chapter a 1080×1350 JPEG. These exact cards, personalised with your names and data, are what we send you.</p>
+          <span class="sc-cta">Try free preview →</span>
         </div>
       </a>
       <a href="card_gallery.html" target="_blank" class="sc-item fade-up" style="transition-delay:.1s">
-        <img class="sc-thumb" src="assets/preview_card_gallery.jpg" alt="Card gallery">
+        <img class="sc-thumb" src="assets/cards/slide_04_numbers.jpg" alt="Card styles">
         <div class="sc-body">
-          <div class="sc-tag">20+ styles · all personas</div>
-          <div class="sc-name">The Card Gallery</div>
-          <p class="sc-desc">20 card designs across anniversary, wedding, and friendship stories. Browse the full collection and see exactly what yours could look like.</p>
-          <span class="sc-cta">Browse the full gallery</span>
+          <div class="sc-tag">Browse all card styles</div>
+          <div class="sc-name">Full Card Gallery</div>
+          <p class="sc-desc">See every card design we can generate — cover, stats, rituals, language, photo, journey and more. All styles, all layouts, exactly as delivered.</p>
+          <span class="sc-cta">Browse gallery →</span>
         </div>
       </a>
       <a href="samples/generated_outputs/aarav_meera_anniversary/site/" target="_blank" class="sc-item fade-up" style="transition-delay:.15s">
-        <img class="sc-thumb" src="assets/preview_aarav_meera_site.jpg" alt="Cinematic website demo">
+        <img class="sc-thumb" src="assets/cards/slide_07_journey.jpg" alt="Cinematic website demo">
         <div class="sc-body">
-          <div class="sc-tag">Live demo · cinematic keepsake</div>
+          <div class="sc-tag">Wrapped + Site — ₹1,999 · private URL hosted permanently</div>
           <div class="sc-name">Cinematic Website</div>
-          <p class="sc-desc">An interactive private site — your stats, chapters, moments, and rituals as a luxury digital experience. Built from a real WhatsApp export.</p>
-          <span class="sc-cta">Experience the demo</span>
+          <p class="sc-desc">A private, interactive site with your full story — stats, chapters, moments, rituals. This live demo is built from real WhatsApp data. Click to experience it.</p>
+          <span class="sc-cta">Open live demo →</span>
         </div>
       </a>
     </div>
     <div class="demo-row fade-up">
-      <div class="demo-row-hd">More live demos</div>
+      <div class="demo-row-hd">More Wrapped + Site demos</div>
       <div class="demo-chips">
         <a href="samples/generated_outputs/akshay_diu/site/" target="_blank" class="demo-chip">
           <span class="dc-name">Akshay &amp; Diu</span>
-          <span class="dc-type">The original · real data</span>
+          <span class="dc-type">Anniversary · real data</span>
         </a>
         <a href="samples/generated_outputs/kabir_anaya_wedding/site/" target="_blank" class="demo-chip">
           <span class="dc-name">Kabir &amp; Anaya</span>
-          <span class="dc-type">Wedding memory</span>
+          <span class="dc-type">Wedding</span>
         </a>
         <a href="samples/generated_outputs/riya_naina_friendship_birthday/site/" target="_blank" class="demo-chip">
           <span class="dc-name">Riya &amp; Naina</span>
           <span class="dc-type">Friendship birthday</span>
         </a>
-        <a href="card_gallery.html" target="_blank" class="demo-chip">
-          <span class="dc-name">Full Gallery</span>
-          <span class="dc-type">All 60+ card styles</span>
+        <a href="samples/generated_outputs/aarav_meera_anniversary/site/" target="_blank" class="demo-chip">
+          <span class="dc-name">Aarav &amp; Meera</span>
+          <span class="dc-type">Anniversary</span>
         </a>
       </div>
     </div>
@@ -788,12 +788,12 @@ button { font-family:var(--f-ui); }
         <div id="pkg-free-note" style="text-align:center;margin-top:16px;font-size:13px;color:var(--faint);display:none">Free cards will have a small "MemoryWrapped" watermark in the corner.</div>
       </div>
 
-      <!-- Step 4: Pay + Verify (hidden for free tier) -->
+      <!-- Step 4: Pay (paid tiers only) -->
       <div class="modal-step" id="step-4">
         <div class="step-hd">
           <div class="eyebrow">Step 4 of 5</div>
-          <h2>Pay &amp; verify</h2>
-          <p>Pay via UPI, enter your 12-digit UTR, then get a code on your email to continue.</p>
+          <h2>Complete your payment</h2>
+          <p>Pay via UPI and enter your 12-digit transaction reference. We'll send your cards within 24 hours.</p>
         </div>
         <div class="pay-box show" id="pay-box">
           <div class="pay-inner">
@@ -808,7 +808,7 @@ button { font-family:var(--f-ui); }
           </div>
         </div>
         <div class="form-g" style="margin-top:24px">
-          <label>Your email <span style="color:var(--rose)">*</span></label>
+          <label>Your email <span style="color:var(--rose)">*</span> <span style="color:var(--faint);font-size:12px">— we'll send your cards here</span></label>
           <input type="email" class="f-input" id="f-email" placeholder="you@gmail.com" oninput="validateCurrentStep()">
         </div>
         <div class="form-g">
@@ -816,42 +816,50 @@ button { font-family:var(--f-ui); }
           <input type="text" class="utr-input" id="utr-input" placeholder="e.g. 426819200374" maxlength="12" oninput="onUtrInput()" inputmode="numeric">
           <div id="utr-hint" style="font-size:12px;color:var(--faint);margin-top:6px">Find this in your UPI app under transaction details</div>
         </div>
-        <div id="verify-section" style="display:none;margin-top:20px">
-          <button class="btn-ghost" id="btn-send-code" onclick="sendVerificationCode()" style="width:100%;margin-bottom:16px">Send verification code to my email →</button>
-          <div class="form-g" id="code-input-wrap" style="display:none">
-            <label>Verification code</label>
-            <input type="text" class="f-input" id="f-code" placeholder="6-character code" maxlength="6" oninput="onCodeInput()">
-            <div id="code-status" style="font-size:13px;margin-top:6px;color:var(--faint)"></div>
-          </div>
-        </div>
       </div>
 
-      <!-- Step 5: Generate -->
+      <!-- Step 5: Free → generate | Paid → order confirmed -->
       <div class="modal-step" id="step-5">
-        <div class="step-hd">
-          <div class="eyebrow">Step 5 of 5</div>
-          <h2>Generate your cards</h2>
-          <p id="gen-desc">Everything renders in your browser. Takes about 30 seconds.</p>
+
+        <!-- FREE TIER -->
+        <div id="free-gen-panel">
+          <div class="step-hd">
+            <div class="eyebrow">Step 5 of 5</div>
+            <h2>Your 3 preview cards</h2>
+            <p>Generating now in your browser — takes a few seconds.</p>
+          </div>
+          <div class="gen-summary" id="gen-summary">
+            <h3 id="gen-names">Your cards</h3>
+            <p>Package: <span id="gen-pkg">—</span></p>
+            <p>Chat: <span id="gen-chat-info">—</span></p>
+          </div>
+          <div class="gen-zone">
+            <button class="btn-generate" id="btn-generate" onclick="startGeneration()">✦ Generate My Preview Cards</button>
+          </div>
+          <div class="progress-area" id="progress-area">
+            <div class="progress-lbl" id="progress-lbl">Preparing…</div>
+            <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+          <div class="preview-grid" id="preview-grid"></div>
+          <div class="dl-wrap" id="dl-wrap">
+            <button class="btn-dl" id="btn-dl">↓ Download 3 Cards</button>
+            <p class="dl-note" style="margin-top:8px">Cards are watermarked. Upgrade for all 9 without watermark.</p>
+            <button class="btn-primary" style="margin-top:20px;width:100%" onclick="goToStep(3);selectPkg('wrapped',document.querySelectorAll('.pkg-card')[1])">Upgrade to Wrapped — ₹399 →</button>
+          </div>
         </div>
-        <div class="gen-summary" id="gen-summary">
-          <h3 id="gen-names">Your cards</h3>
-          <p>Package: <span id="gen-pkg">—</span></p>
-          <p>Chat: <span id="gen-chat-info">—</span></p>
+
+        <!-- PAID TIER: order confirmed -->
+        <div id="paid-confirm-panel" style="display:none;text-align:center;padding:40px 0">
+          <div style="font-size:56px;margin-bottom:24px">✦</div>
+          <h2 style="font-family:var(--f-display);font-size:36px;margin-bottom:16px">Order received!</h2>
+          <p style="color:var(--muted);max-width:420px;margin:0 auto 32px">We've got your order and will hand-craft your <span id="confirm-pkg-name">cards</span> and send them to:</p>
+          <div style="font-size:20px;color:var(--gold);margin-bottom:32px" id="confirm-email">—</div>
+          <p style="color:var(--faint);font-size:14px">Usually within 24 hours · Check spam if you don't see it</p>
+          <div style="margin-top:40px;padding:16px;border:1px solid rgba(201,169,110,.15);border-radius:10px;font-size:14px;color:var(--faint)">
+            Order ref: <span id="confirm-utr" style="color:var(--muted);letter-spacing:.05em"></span>
+          </div>
         </div>
-        <div class="gen-zone">
-          <button class="btn-generate" id="btn-generate" onclick="startGeneration()">✦ Generate My Cards</button>
-        </div>
-        <div class="progress-area" id="progress-area">
-          <div class="progress-lbl" id="progress-lbl">Preparing…</div>
-          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-        </div>
-        <div class="preview-grid" id="preview-grid"></div>
-        <div class="dl-wrap" id="dl-wrap">
-          <button class="btn-dl" id="btn-dl">↓ Download ZIP</button>
-          <p class="dl-note">All cards packed as JPEGs.</p>
-          <p style="margin-top:12px;font-size:13px;color:var(--faint)">@getmemorywrapped · Tag us when you post ✦</p>
-          <div id="site-note" style="display:none;margin-top:16px;padding:16px;border:1px solid rgba(201,169,110,.2);border-radius:8px;font-size:14px;color:var(--muted)">Your cinematic website will be delivered to <strong id="site-email"></strong> within 48 hours.</div>
-        </div>
+
       </div>
 
     </div>
@@ -877,7 +885,7 @@ button { font-family:var(--f-ui); }
 
 <script>
 // ── STATE ─────────────────────────────────────────────────────────────────────
-let currentStep=1, selectedPkg='wrapped', utrVal='', verifiedCode=false, manifest=null, photoURL=null, generatedBlobs=[];
+let currentStep=1, selectedPkg='wrapped', utrVal='', manifest=null, photoURL=null, generatedBlobs=[];
 const PKG_PRICES={free:0,wrapped:399,site:1999};
 const PKG_LABELS={free:'Free Preview',wrapped:'Wrapped — ₹399',site:'Wrapped + Site — ₹1,999'};
 const PKG_CARDS ={free:3,wrapped:9,site:9};
@@ -911,7 +919,7 @@ function goToStep(n){
   validateCurrentStep();
   document.querySelector('.modal-scroll').scrollTop=0;
   if(n===4) renderQR();
-  if(n===TOTAL_STEPS) fillGenSummary();
+  if(n===TOTAL_STEPS){ fillGenSummary(); document.getElementById('btn-back').style.display=selectedPkg==='free'?'':'none'; }
 }
 function nextStep(){
   if(currentStep===3 && selectedPkg==='free'){ goToStep(5); return; }
@@ -927,7 +935,7 @@ function validateCurrentStep(){
   if(currentStep===1) btn.disabled=!manifest;
   else if(currentStep===2) btn.disabled=!(v('f-name1')&&v('f-name2'));
   else if(currentStep===3) btn.disabled=false;
-  else if(currentStep===4) btn.disabled=!(UTR_RE.test(v('utr-input')) && v('f-email') && verifiedCode);
+  else if(currentStep===4) btn.disabled=!(UTR_RE.test(v('utr-input')) && v('f-email'));
   else btn.disabled=true;
 }
 const v=id=>document.getElementById(id)?.value?.trim()||'';
@@ -951,39 +959,8 @@ function renderQR(){
 
 function onUtrInput(){
   utrVal=v('utr-input');
-  verifiedCode=false;
-  const valid=UTR_RE.test(utrVal)&&v('f-email');
-  document.getElementById('verify-section').style.display=valid?'block':'none';
-  document.getElementById('utr-hint').textContent=utrVal&&!UTR_RE.test(utrVal)?'UTR must be exactly 12 digits':'Find this in your UPI app under transaction details';
+  document.getElementById('utr-hint').textContent=utrVal&&!UTR_RE.test(utrVal)?'Must be exactly 12 digits':'Find this in your UPI app under transaction details';
   validateCurrentStep();
-}
-
-async function sendVerificationCode(){
-  const btn=document.getElementById('btn-send-code');
-  btn.disabled=true; btn.textContent='Sending…';
-  try{
-    const r=await fetch(GAS,{method:'POST',body:JSON.stringify({action:'verify',utr:v('utr-input'),email:v('f-email'),pkg:selectedPkg})});
-    const d=await r.json();
-    if(d.ok){
-      document.getElementById('code-input-wrap').style.display='block';
-      document.getElementById('code-status').textContent='Code sent! Check your email (also spam folder).';
-      btn.textContent='Resend code';
-    } else { btn.textContent='Send code (try again)'; }
-  } catch(e){ btn.textContent='Send code (try again)'; }
-  btn.disabled=false;
-}
-
-async function onCodeInput(){
-  const code=v('f-code');
-  if(code.length<6) return;
-  const st=document.getElementById('code-status');
-  st.textContent='Verifying…';
-  try{
-    const r=await fetch(GAS,{method:'POST',body:JSON.stringify({action:'confirm',utr:v('utr-input'),email:v('f-email'),code})});
-    const d=await r.json();
-    if(d.ok){ verifiedCode=true; st.textContent='✓ Verified! Click Continue.'; st.style.color='#6ee396'; validateCurrentStep(); }
-    else { st.textContent='Invalid code. Try again.'; st.style.color='#e8b4b8'; }
-  } catch(e){ st.textContent='Verification failed. Try again.'; }
 }
 
 // ── CHAT FILE ─────────────────────────────────────────────────────────────────
@@ -1037,19 +1014,26 @@ function resetPhoto(e){
 // ── GEN SUMMARY ───────────────────────────────────────────────────────────────
 function fillGenSummary(){
   const n1=v('f-name1')||'Person 1', n2=v('f-name2')||'Person 2';
-  document.getElementById('gen-names').textContent=n1+' & '+n2;
-  document.getElementById('gen-pkg').textContent=PKG_LABELS[selectedPkg];
-  if(manifest){
-    const msgs=manifest.stats.totalMessages.toLocaleString('en-IN');
-    const fr=manifest.dateRange.from?manifest.dateRange.from.slice(0,7):'';
-    const to=manifest.dateRange.to?manifest.dateRange.to.slice(0,7):'';
-    document.getElementById('gen-chat-info').textContent=`${msgs} messages · ${fr} → ${to}`;
-  }
   const isFree=selectedPkg==='free';
-  document.getElementById('gen-desc').textContent=isFree?'3 watermarked cards will generate instantly.':'Everything renders in your browser. Takes about 30 seconds.';
-  const siteNote=document.getElementById('site-note');
-  if(selectedPkg==='site'){ siteNote.style.display='block'; document.getElementById('site-email').textContent=v('f-email'); }
-  else siteNote.style.display='none';
+  document.getElementById('free-gen-panel').style.display=isFree?'block':'none';
+  document.getElementById('paid-confirm-panel').style.display=isFree?'none':'flex';
+  document.getElementById('paid-confirm-panel').style.flexDirection='column';
+  document.getElementById('paid-confirm-panel').style.alignItems='center';
+  if(isFree){
+    document.getElementById('gen-names').textContent=n1+' & '+n2;
+    document.getElementById('gen-pkg').textContent=PKG_LABELS[selectedPkg];
+    if(manifest){
+      const msgs=manifest.stats.totalMessages.toLocaleString('en-IN');
+      const fr=manifest.dateRange.from?manifest.dateRange.from.slice(0,7):'';
+      const to=manifest.dateRange.to?manifest.dateRange.to.slice(0,7):'';
+      document.getElementById('gen-chat-info').textContent=`${msgs} messages · ${fr} → ${to}`;
+    }
+  } else {
+    document.getElementById('confirm-email').textContent=v('f-email');
+    document.getElementById('confirm-utr').textContent=v('utr-input');
+    document.getElementById('confirm-pkg-name').textContent=selectedPkg==='site'?'cards + cinematic website':'cards';
+    logOrder();
+  }
 }
 
 // ── CARD GENERATION ───────────────────────────────────────────────────────────
