@@ -321,6 +321,8 @@ button { font-family:var(--f-ui); }
 .btn-next { background:linear-gradient(135deg,var(--gold),var(--gold-dark)); color:var(--bg); font-size:15px; font-weight:600; padding:12px 36px; border-radius:8px; border:none; cursor:pointer; transition:all .2s; letter-spacing:.03em; }
 .btn-next:hover { opacity:.9; transform:translateY(-1px); }
 .btn-next:disabled { opacity:.36; cursor:not-allowed; transform:none; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)} }
+.drop-zone.shake { animation:shake 0.5s ease-in-out; }
 @media(max-width:600px){ .modal-ft{padding:14px 20px;} }
 
 /* ── CARD STAGE ───────────────────────────────────────────────────────────── */
@@ -957,6 +959,13 @@ function goToStep(n){
   if(n===TOTAL_STEPS){ fillGenSummary(); document.getElementById('btn-back').style.display=selectedPkg==='free'?'':'none'; }
 }
 function nextStep(){
+  if(currentStep===1 && !manifest){
+    const dz=document.getElementById('drop-zone');
+    dz.classList.add('shake');
+    setTimeout(()=>dz.classList.remove('shake'),600);
+    document.getElementById('upload-status').innerHTML='<span class="err">Please upload your WhatsApp .txt file to continue</span>';
+    return;
+  }
   if(currentStep===3 && selectedPkg==='free'){ goToStep(5); return; }
   if(currentStep<TOTAL_STEPS) goToStep(currentStep+1);
 }
@@ -967,7 +976,7 @@ function prevStep(){
 
 function validateCurrentStep(){
   const btn=document.getElementById('btn-next');
-  if(currentStep===1) btn.disabled=!manifest;
+  if(currentStep===1) btn.disabled=false;
   else if(currentStep===2) btn.disabled=!(v('f-name1')&&v('f-name2'));
   else if(currentStep===3) btn.disabled=false;
   else if(currentStep===4) btn.disabled=!(UTR_RE.test(v('utr-input')) && v('f-email'));
